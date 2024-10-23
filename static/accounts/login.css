@@ -1,0 +1,41 @@
+body{
+    background-image: url(/static/image/background1.jpg);
+    background-size:cover;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 0.6fr 1fr ;
+    grid-template-rows: 200px 650px  ;
+    grid-template-areas:
+      "title title title"
+      "box-left box-center box-right ";
+
+}
+
+
+
+.title {
+    margin-top: 80px;
+    grid-area: title;
+    color: aliceblue;
+    font-size: 20pt;
+    font-family: 'Helvetica';
+}
+  
+
+.box-left {
+    grid-area: box-left;
+}
+
+
+.box-center{
+    grid-area: box-center;
+    background-color: rgba(199, 239, 239, 0.777);
+    opacity: 0.8;
+    border-radius: 2%;
+}
+
+  
+.box-right {
+    grid-area: box-right;
+}
+  
