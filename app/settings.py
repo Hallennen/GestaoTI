@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 
 ]
 
-AUTH_USER_MODEL= 'accounts.User'
+AUTH_USER_MODEL= 'accounts.AcontUser'
+# author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

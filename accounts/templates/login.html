@@ -13,11 +13,17 @@
     <div class="box-left">
     </div>
     <div class="box-center">
-        <form method="post">
-            {% csrf_token %}
-            {{ login_form }}
-            <input type="submit" value="Acessar">
-        </form>
+        <div class="conteudo">
+
+            <form method="post">
+                {% csrf_token %}
+                <label>Usuário:</label><br>
+                {{ login_form.username }}<br>
+                <label>Senha:</label><br>
+                {{ login_form.password }}<br>
+                <input type="submit" value="Acessar">
+            </form>
+        </div>
     </div>
     <div class="box-right">
         <h3></h3>

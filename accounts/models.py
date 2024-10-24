@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # Create your models here.
 LOGRADOURO = (
@@ -21,21 +21,18 @@ class Unit(models.Model):
 
 
 
-POSITIONS = (
-    ('Gestor','Gestor-T.I'),
-    ('T.I','Técnico-T.I'),
-)
+
 
 class UserManager(BaseUserManager):
-    def get_by_natural_key(self, email):
-        return self.get(email=email)
+    def get_by_natural_key(self, user):
+        return self.get(user=user)
     def create_user(self, user, password = None, is_active = True, is_staff = False, is_admin = False):
         if not user:
             raise ValueError("O Usuário deve ter um user.")
         if not password:
             raise ValueError("O Usuário deve ter uma senha.")
         user_obj = self.model(
-            email = self.normalize_email(user)
+            user = self.normalize_user(user)
         )
         user_obj.set_password(password) # muda a senha
         user_obj.staff = is_staff
@@ -43,6 +40,7 @@ class UserManager(BaseUserManager):
         user_obj.active = is_active
         user_obj.save(using=self._db)
         return user_obj
+    
     def create_staffuser(self, user, password = None):
         user = self.create_user(
             user,
@@ -59,18 +57,30 @@ class UserManager(BaseUserManager):
         )
         return user
 
+# POSITION= (
+#     ('Gestor','Gestor-T.I'),
+#     ('T.I','Técnico-T.I'),
+#     ('T.I-V', 'Volante'),
+# )
 
-class User(AbstractBaseUser):
+class Position(models.Model):
+    position_name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.position_name
+
+
+class AcontUser(AbstractUser):
 
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     user = models.CharField(unique=True, max_length=7)
-    birthday = models.DateField(default= '1999-01-01')
+    birthday = models.DateField(default= '1999-01-02')
     telephone = models.CharField(max_length=13, blank=True)
     email = models.EmailField(default='email_default@email.com')
-    unit = models.ForeignKey(Unit, on_delete=models.PROTECT, related_name='unit_account',null=True, default=1)
+    unit = models.ForeignKey(Unit, on_delete=models.PROTECT, related_name='unit_account',null=True)
     ramal = models.CharField(max_length=9, null=True)
-    cargo = models.CharField(null=True, blank=True, default='T.I-Tecnico')
+    cargo = models.ForeignKey(Position, on_delete=models.PROTECT, related_name='position_account', null=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
@@ -108,6 +118,5 @@ class User(AbstractBaseUser):
     @property
     def is_activate(self):
         return self.active
-
 
 

@@ -1,13 +1,21 @@
 from django.contrib import admin
-from accounts.models import User
+from accounts.models import Unit, AcontUser, Position
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 # Register your models here.
 
-@admin.register(User)
-class User(admin.ModelAdmin):
-    list_display = ('user','email', 'first_name','unit', 'cargo','ramal','active')
+@admin.register(AcontUser)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('user','username','email', 'first_name','unit', 'cargo','ramal','active')
+
+@admin.register(Unit)
+class UnitAdmin(admin.ModelAdmin):
+    list_display= ('name_unit', 'adress', 'number_adress')
+
+@admin.register(Position)
+class PositionAdmin(admin.ModelAdmin):
+    list_display= ('position_name',)
 
 
 # class UserAdmin(BaseUserAdmin):
@@ -39,4 +47,4 @@ class User(admin.ModelAdmin):
 
 # admin.site.register(User, UserAdmin)
 # Remove Group Model from admin. We're not using it.
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
