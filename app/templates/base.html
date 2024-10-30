@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+    <link rel="stylesheet" href="/static/app/base.css">
+
+</head>
+
+{% block style-title %}
+{% endblock %}
+
+<header class="header-top">
+    <div>
+        <h1>-- GestaoTI --</h1>
+    </div>
+</header>
+
+<body>
+    <div class="conteiner">
+
+        <div class="navbar-lateral">
+            <ul>
+                <a class="options-navbar" href=""><li class="options-navbar">Meu Perfil</li></a>
+                <a class="options-navbar" href=""><li class="options-navbar">Minhas Folgas</li></a>
+            </ul>
+        </div>
+        <div class="box-center">
+            {% block content %}
+            <h2>teste</h2>
+            {% endblock %}
+        </div>
+
+    </div>
+
+</body>
+</html>

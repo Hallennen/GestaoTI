@@ -51,6 +51,13 @@ body{
     /* background-color: blue; */
 }
 
+.alert_error{
+    background: red;
+    font-size: larger;
+    color: white;
+    font-weight: bold;
+}
+
 input{
     opacity: 2.0;
     width: 60%;

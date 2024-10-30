@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import AcontUser
 from accounts import forms
 from django.views.generic import CreateView
+from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
@@ -14,8 +15,9 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request,user)
-            return redirect('/register')
+            return redirect('/aplication')
         else:
+            messages.info(request, 'Usuário ou Senha inválido')
             login_form = AuthenticationForm()
     else:
         login_form = AuthenticationForm()
@@ -23,8 +25,8 @@ def login_view(request):
     return render(request, 'login.html', {'login_form': login_form})
 
 
-# class CreateUserView(CreateView):
-#     model = AcontUser
-#     form_class = forms.CreateUser
-#     success_url = '/login/'
-#     template_name = 'create.html'
+class CreateUserView(CreateView):
+    model = AcontUser
+    form_class = forms.CreateUser
+    success_url = '/login/'
+    template_name = 'create.html'

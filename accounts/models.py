@@ -57,6 +57,7 @@ class UserManager(BaseUserManager):
         )
         return user
 
+
 # POSITION= (
 #     ('Gestor','Gestor-T.I'),
 #     ('T.I','Técnico-T.I'),

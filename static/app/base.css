@@ -1,0 +1,48 @@
+
+
+.header-top{
+
+    /* background-color: pink; */
+    text-align: center;
+    font-family: 'Helvetica';
+}
+
+.conteiner{
+    /* background-color: blue; */
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    min-width: max-content;
+}
+
+.navbar-lateral{
+    padding: 0;
+    margin-left: -11px;
+    border:  2px solid black;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+ul{
+    margin-left: -35px ;
+}
+
+
+.options-navbar{
+    color:black;
+    /* background-color: blue; */
+    margin: -10px 0px -10px 0px;
+    padding: 15px 0px ;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.options-navbar:hover{
+    background-color: rgb(50, 35, 72);
+    color:white;
+}
+/* 
+.box-center{
+    background-color: blueviolet;
+} */
+

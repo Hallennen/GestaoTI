@@ -21,6 +21,13 @@
                 {{ login_form.username }}<br>
                 <label>Senha:</label><br>
                 {{ login_form.password }}<br>
+                {% if messages %}
+                    {% for m in messages %}
+                        <div class="alert_error" role="alert">
+                            {{ m }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <input type="submit" value="Acessar">
             </form>
         </div>
