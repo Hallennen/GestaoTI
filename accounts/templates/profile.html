@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/accounts/profile.css">
+{% endblock %}
+
+{% block content %}
+    <div class="info-form">
+        <table>        
+            
+            <form method="post">           
+                {% csrf_token %}
+                {{form.as_table}}
+            </form>
+            
+        </table>
+        <input type="submit" value="Atualizar Dados">
+    </div>
+
+
+{% endblock %}

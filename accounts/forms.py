@@ -16,4 +16,9 @@ class CreateUser(forms.ModelForm):
         password = self.cleaned_data.get('password')
         password = make_password(password)
         return password
-        
+    
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = AcontUser
+        fields = ['username','first_name','last_name','birthday','telephone','email','ramal', 'unit']        

@@ -1,0 +1,16 @@
+.options-navbar#profile{
+    background-color: rgb(50, 35, 72);
+    color: white;
+    font-size: bold;
+}
+
+
+
+.info-form{
+    align-content:center;
+    display: flexbox;
+    direction: column;
+    width: 90%;
+    /* background-color: blue; */
+    margin: 10px
+}

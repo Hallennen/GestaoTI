@@ -9,31 +9,46 @@
 
 </head>
 
-{% block style-title %}
+{% block style %}
 {% endblock %}
 
 <header class="header-top">
-    <div>
+    <div class="title-system">
         <h1>-- GestaoTI --</h1>
+    </div>
+    <div class="botton-right-logout">
+        <a href=" {% url 'logout' %} "><img id="logout-img" src="/static/image/sair.png" alt="" width="30px" height="30px"></a>
     </div>
 </header>
 
 <body>
-    <div class="conteiner">
 
-        <div class="navbar-lateral">
+    <div class="conteiner">
+        
+        <div class="box-lateral">
+            <nav id="sidebar" class="collapse d-lg-block sidebar collapse bg-white">
             <ul>
-                <a class="options-navbar" href=""><li class="options-navbar">Meu Perfil</li></a>
-                <a class="options-navbar" href=""><li class="options-navbar">Minhas Folgas</li></a>
+                {% if user.is_authenticated %}
+                    <li id="welcome-name">Olá, {{ user.username}}!</li>
+                
+                    <a class="options-navbar" id="profile" href="{% url 'profile' user.pk %} " title="Meu Perfil"><li id="profile" class="options-navbar" >Meu Perfil</li></a>
+                    <a class="options-navbar" id="rest" href="{% url 'rest' user.pk %} "><li  id="rest" class="options-navbar">Minhas Folgas</li></a>
+                    <a class="options-navbar" id="vacation" href="{% url 'vacation' user.pk %} "><li id="vacation" class="options-navbar">Minhas Férias</li></a>
+                {% endif %}
             </ul>
+    
+            </nav>
         </div>
+        
         <div class="box-center">
             {% block content %}
-            <h2>teste</h2>
+
             {% endblock %}
         </div>
 
     </div>
 
 </body>
+
+<footer><p>&copy; 2024 Hallennen Marinho</p></footer>
 </html>

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import AcontUser
 from accounts import forms
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView, TemplateView, UpdateView
 from django.contrib import messages
 
 # Create your views here.
@@ -24,9 +24,27 @@ def login_view(request):
         
     return render(request, 'login.html', {'login_form': login_form})
 
+def logout_view(request):
+    logout(request)
+    return redirect ('login')
 
-class CreateUserView(CreateView):
+
+
+class AplicationView(TemplateView):
+    template_name = 'aplication.html'
+
+
+
+class DetailProfileView(UpdateView):
     model = AcontUser
-    form_class = forms.CreateUser
-    success_url = '/login/'
-    template_name = 'create.html'
+    template_name = 'Profile.html'
+    form_class = forms.ProfileForm
+
+
+class DetailFeriasView(DetailView):
+    model = AcontUser
+    template_name = 'myvacation.html'
+
+class DetailFolgasView(DetailView):
+    model = AcontUser
+    template_name = 'myrest.html'
