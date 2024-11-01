@@ -5,6 +5,7 @@ from accounts.models import AcontUser
 from accounts import forms
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 # Create your views here.
 def login_view(request):
@@ -24,6 +25,8 @@ def login_view(request):
         
     return render(request, 'login.html', {'login_form': login_form})
 
+
+## logout 
 def logout_view(request):
     logout(request)
     return redirect ('login')
@@ -33,12 +36,32 @@ def logout_view(request):
 class AplicationView(TemplateView):
     template_name = 'aplication.html'
 
+# class CreateView(CreateView):
+#     model= AcontUser
+#     template_name = 'profile.html'
+#     form_class = forms.CreateUser
+#     success_url = '/aplication/'
 
 
-class DetailProfileView(UpdateView):
+
+class DetailProfileView(DetailView):
     model = AcontUser
     template_name = 'Profile.html'
+
+
+
+class UpdateProfileView(UpdateView):
+    model = AcontUser
+    template_name = 'editprofile.html'
     form_class = forms.ProfileForm
+    success_url = '/profile/'
+
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs= {'pk': self.object.pk})
+
+
+
+
 
 
 class DetailFeriasView(DetailView):

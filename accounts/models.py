@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+
 # Create your models here.
 LOGRADOURO = (
     ('Rua','Rua'),
@@ -72,7 +73,6 @@ class Position(models.Model):
 
 
 class AcontUser(AbstractUser):
-
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     user = models.CharField(unique=True, max_length=7)
@@ -86,6 +86,7 @@ class AcontUser(AbstractUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to= 'profile/', blank=True, null=True,  verbose_name = "Foto")
 
     USERNAME_FIELD = 'user'
     REQUIRED_FIELDS = []
@@ -119,5 +120,8 @@ class AcontUser(AbstractUser):
     @property
     def is_activate(self):
         return self.active
+    # @property
+    # def password(self):
+    #     password = make
 
 

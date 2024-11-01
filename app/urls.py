@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView
+from django.conf.urls.static import static
+from django.conf import settings
+from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,9 +27,12 @@ urlpatterns = [
     path('aplication/', AplicationView.as_view(), name='aplication' ),
     path('logout/', logout_view, name='logout' ),
     path('profile/<int:pk>/', DetailProfileView.as_view(), name='profile'),
+    path('profile/<int:pk>/edit/', UpdateProfileView.as_view(), name='edit-profile'),
+
     path('folgas/<int:pk>/', DetailFolgasView.as_view(), name='rest'),
     path('ferias/<int:pk>/', DetailFeriasView.as_view(), name='vacation'),
+    path('profile/create/', CreateView.as_view(), name='create'),
     
 
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)

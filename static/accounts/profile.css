@@ -1,16 +1,143 @@
-.options-navbar#profile{
-    background-color: rgb(50, 35, 72);
-    color: white;
-    font-size: bold;
-}
-
-
-
 .info-form{
     align-content:center;
     display: flexbox;
     direction: column;
     width: 90%;
     /* background-color: blue; */
-    margin: 10px
+    margin:  2% 5%;
+    
+}.options-navbar#profile{
+    background-color: rgb(50, 35, 72);
+    color: white;
+    font-size: bold;
+}
+
+.content{
+    padding-bottom: 5%;
+	margin-bottom:10%;
+}
+
+.grid {
+	display: grid;
+}
+
+.grid-auto-rows-2 {
+	grid-template-columns: 1fr 1fr;
+
+}
+
+
+
+
+
+.photo{
+    grid-column: span 2;
+    margin-bottom: 10px;
+}
+
+img#foto{
+	width: 25%;
+	display:flex;
+	margin-left:37.5%;
+	justify-content: center;
+    border-radius: 50%;
+}
+
+
+
+
+.item-grande {
+	grid-column: span 2;
+}
+
+.item {
+	margin: 5px;
+    display:inline;
+    border: 1px solid rgba(235, 226, 226, 0.55);
+    border-radius: 8px;
+	text-align: left;
+	font-size: 1.5em;
+    min-height: min-content;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+
+}
+label{
+    font-size: large;
+}
+
+input{
+    width: 70%;
+    height: 50%;
+    margin-left: 10%;
+    border: none;
+    border-bottom: 1px solid grey;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    border-radius: 5px;
+
+}
+
+select{
+    width: 70%;
+    height: 50%;
+    margin-left: 10%;
+}
+
+button#editar{
+    margin-top: 10px;
+    margin-left: 35%;
+    padding: 11px;
+    width: 30%;
+    background-color: #575a5d;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-family: 'Helvetica';
+    grid-column: span 2;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    transition: 0.5s;
+}
+
+button#editar:hover{
+    background-color: #e9eef3;
+    cursor: pointer;
+    transition: 0.8s;
+    color:black
+    
+}
+
+a#editar{
+    grid-column: span 2;
+}
+
+
+
+/* botao alteração */
+
+button#salvar{
+    margin-top: 10px;
+    margin-left: 35%;
+    padding: 11px;
+    width: 30%;
+    background-color: #008000;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-family: 'Helvetica';
+    grid-column: span 2;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    transition: 0.5s;
+}
+
+button#salvar:hover{
+    background-color: #2bdf03;
+    cursor: pointer;
+    transition: 0.8s;
+    
+}
+
+a#editar{
+    grid-column: span 2;
 }

@@ -10,15 +10,10 @@ class CreateUser(forms.ModelForm):
         fields = "__all__"
         # fields = ('user','password','first_name','last_name','birthday','telephone','email','unit','cargo','ramal')
 
-
-    ## criando hash para salva no banco  
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        password = make_password(password)
-        return password
     
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = AcontUser
-        fields = ['username','first_name','last_name','birthday','telephone','email','ramal', 'unit']        
+        # fields = "__all__"
+        fields = ['photo','username','first_name','last_name','birthday','telephone','email','ramal', 'unit']        

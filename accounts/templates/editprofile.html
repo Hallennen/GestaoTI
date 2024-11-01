@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/accounts/profile.css">
+{% endblock %}
+
+{% block content %}
+    <div class="info-form">
+        <section class="content">        
+            <form method="post">
+                {% csrf_token %}
+                <section class="grid grid-auto-rows-2">
+                    <div class="photo">
+                        {% if user.photo %}
+                        <img id="foto" src="/media/{{user.photo}}" alt="" srcset="">
+                        {% else %}
+                        <img id="foto"src="/media/image/padrao.png">
+                        {% endif %}
+                    </div>
+                    
+                        
+                        
+                    <div class="item item-grande">
+                        <label id="form">Username:</label><br>
+                        {{form.username}}<br>
+                    </div>
+                        
+                    <div class="item">
+                        <label id="form">Primeiro nome:</label><br>
+                        {{form.first_name}}<br>
+                    </div>
+
+                    <div class="item">
+                        <label id="form">Último nome:</label><br>
+                        {{form.last_name}}<br>
+                    </div>
+
+                    <div class="item">
+                        <label id="form">Data de nasc:</label><br>
+                        {{form.birthday}}<br>
+                    </div>
+
+                    <div class="item">
+                        <label id="form">Telefone:</label><br>
+                        {{form.telephone}}<br>
+                    </div>
+                    
+                    <div class="item item-grande">
+                        <label id="form">E-mail:</label><br>
+                        {{form.email}}<br>
+                    </div>
+                    
+                    <div class="item item-grande">
+                        <label id="form">Unidade:</label><br>
+                        {{form.unit}}<br>
+                    </div>
+                    
+                    <div class="item item-grande">
+                        <label id="form">Ramal:</label><br>
+                        {{form.ramal}}<br>
+                    </div>
+
+                    <button id="salvar" type="submit">Salvar alteração</button>
+                    
+                </section>
+            </form>
+        </section>
+    </div>
+
+
+{% endblock %}
