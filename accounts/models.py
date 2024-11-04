@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 LOGRADOURO = (
     ('Rua','Rua'),
     ('AV','Avenida'),
+    ('ES','Estrada'),
 
 )
 

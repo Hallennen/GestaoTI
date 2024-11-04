@@ -11,7 +11,7 @@
                 {% csrf_token %}
                 <section class="grid grid-auto-rows-2">
                     <div class="photo">
-                        {% if user.photo %}
+                    {% if user.photo %}
                         <img id="foto" src="/media/{{user.photo}}" alt="" srcset="">
                         {% else %}
                         <img id="foto"src="/media/image/padrao.png">

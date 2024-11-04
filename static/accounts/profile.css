@@ -48,6 +48,7 @@ img#foto{
 
 .item-grande {
 	grid-column: span 2;
+    overflow:hidden;
 }
 
 .item {
