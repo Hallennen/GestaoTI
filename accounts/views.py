@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import AcontUser
+from aplication.models import Folga
 from accounts import forms
-from django.views.generic import CreateView, DetailView, TemplateView, UpdateView
+from django.views.generic import CreateView, DetailView, TemplateView, UpdateView,ListView
 from django.contrib import messages
 from django.urls import reverse_lazy
 
@@ -34,13 +35,15 @@ def logout_view(request):
 
 
 class AplicationView(TemplateView):
-    template_name = 'aplication.html'
+    template_name = 'aplication.html'   
 
-# class CreateView(CreateView):
-#     model= AcontUser
-#     template_name = 'profile.html'
-#     form_class = forms.CreateUser
-#     success_url = '/aplication/'
+
+    def get_context_data(self, **kwargs):
+        context = Folga.objects.filter(status_folga = 'APR')
+        extra_context = (Folga.objects.filter(status_folga = 'APR').count())
+        extra = [extra_context]
+        context = context
+        return ({'context':context, 'contadores':extra_context})
 
 
 
@@ -68,6 +71,14 @@ class DetailFeriasView(DetailView):
     model = AcontUser
     template_name = 'myvacation.html'
 
-class DetailFolgasView(DetailView):
-    model = AcontUser
+class DetailFolgasView(ListView):
+    model = Folga
     template_name = 'myrest.html'
+    context_object_name = 'folgas'
+    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["folgas"] = Folga.objects.filter(folga_pessoa='1').values()
+        return context
+    

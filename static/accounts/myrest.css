@@ -3,3 +3,11 @@
     color: white;
     font-size: bold;
 }
+
+
+#linha{
+    border: 2px solid black;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-bottom: 5px;
+}

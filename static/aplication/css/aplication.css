@@ -121,7 +121,8 @@ a#btn_next, a#btn_prev{
     bottom: 7px;
     left: 46.5%;
     /* margin: -3,5px 0 0 -3,5px; */
-    background: #00addf;
+    /* background: #00addf; */
+    background: red;
     display: block;
     position: absolute;
     border-radius: 50%;
