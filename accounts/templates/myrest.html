@@ -6,18 +6,67 @@
 
 {% block content %}
 <!-- <h1>Minhas Folgas</h1> -->
-    <div class="painel-folgas">
-        <div id='linha'>teste</div>
-        <div id='linha'>teste1</div>
-        <div id='linha'>teste2</div>
-        <div id='linha'>teste3</div>
+<p id='informativo'>**Número com base nas suas solicitações**</p>
+    <div class="dados-folgas">
 
+        <div class="item-dados" id='dados-pendente'>
+            <h2>Folgas Pendentes</h2>
+            {% if pendentes > 0 %}
+                <h1>{{pendentes}}</h1>
+            {% else %}
+                <h1>0</h1>
+            {% endif %}
+        </div>
+
+        <div class="item-dados" id='dados-aprovado'>
+            <h2>Folgas Aprovadas</h2>
+            {% if aprovadas > 0 %}
+                <h1>{{aprovadas}}</h1>
+            {% else %}
+                <h1>0</h1>
+            {% endif %}
+        </div>
+        <div class="item-dados" id='dados-recusado'>
+            <h2>Folgas Recusadas</h2>
+            {% if recusadas > 0 %}
+                <h1>{{recusadas}}</h1>
+            {% else %}
+                <h1>0</h1>
+            {% endif %}
+        </div>
+        
     </div>
-<!--         
-        {% if folgas %}
-            {% for folga in folgas %}
 
-                {{folga}}<br>
-            {% endfor %}
-        {% endif %} -->
+
+    <div class="painel-folgas">
+
+
+        {% if folgas %}
+            <div id="linha-titulos">
+
+                <div class="item" id='box'>Data:</div>
+                <div class="item" id='box'>Motivo:</div>
+                <div class="item" id='box'>Status:</div>
+            </div>
+            {% if folgas %}
+                {% for folga in folgas %}
+                    <div id="linha-folga">
+
+                        <div class="item" id='box-folga'>{{folga.day}}</div>
+                        <div class="item" id='box-folga'>{{folga.motivo}}</div>
+                        <div class="item" id='box-folga'>{{folga.status_folga}}</div>
+                    </div>
+            
+                {% endfor %}
+            {% endif %}
+
+
+        {% else %}
+            <h1 class="sem_info">Sem folgas </h1>
+        {% endif%}
+        
+
+    
+    
+    </div>
 {% endblock %}

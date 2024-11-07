@@ -7,16 +7,19 @@ document.addEventListener('DOMContentLoaded',function() {
 
         let firstDayOfWeek = new Date(ano,mes,1).getDay()-1;
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
-        
-        
+        var teste_dados = document.getElementById('dados');
 
-        let teste = document.getElementById('dados').textContent;
-        let dia_informado = (teste.split('-'))[2];
-        let mes_informado = (teste.split('-'))[1];
-        let ano_informado = (teste.split('-'))[0];
+        if (teste_dados){
+
+            
+            var teste = document.getElementById('dados').textContent;
+            var dia_informado = (teste.split('-'))[2];
+            var mes_informado = (teste.split('-'))[1];
+            var ano_informado = (teste.split('-'))[0];
+        }
 
 
-    //    let datas_folga = document.querySelectorAll('#dados')
+    //    var datas_folga = document.querySelectorAll('#dados')
 
 
         for (var i = -firstDayOfWeek ,index=0; i < (42-firstDayOfWeek); i++ , index++){

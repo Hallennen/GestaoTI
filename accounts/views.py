@@ -39,8 +39,8 @@ class AplicationView(TemplateView):
 
 
     def get_context_data(self, **kwargs):
-        context = Folga.objects.filter(status_folga = 'APR')
-        extra_context = (Folga.objects.filter(status_folga = 'APR').count())
+        context = Folga.objects.filter(status_folga = 'APROVADO',folga_pessoa_id=self.request.user)
+        extra_context = (Folga.objects.filter(status_folga = 'APROVADO', folga_pessoa_id=self.request.user).count())
         extra = [extra_context]
         context = context
         return ({'context':context, 'contadores':extra_context})
@@ -75,10 +75,15 @@ class DetailFolgasView(ListView):
     model = Folga
     template_name = 'myrest.html'
     context_object_name = 'folgas'
-    
 
+    
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["folgas"] = Folga.objects.filter(folga_pessoa='1').values()
-        return context
+        context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-day')[:8]
+        context["aprovadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'APROVADO').count()
+        context["pendentes"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'PENDENTE').count()
+        context["recusadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'RECUSADO').count()
+
+        return (context)
     

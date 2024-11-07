@@ -1,14 +1,14 @@
 from django.db import models
 from accounts.models import AcontUser
 # Create your models here.
-MOTIVOS_FOLGA =[('TDM','DOMINGO TRABALHADO'),
-        ('CCG','COMBINADO GESTOR'),            
+MOTIVOS_FOLGA =[('DOMINGO TRABALHADO','TDM',),
+        ('COMBINADO GESTOR','CCG',),            
     ]
 
 STATUS_FOLGA = [
-    ('PEN','PENDENTE'),
-    ('APR','APROVADO'),
-    ('REC','RECUSADO'),
+    ('PENDENTE','PEN'),
+    ('APROVADO','APR'),
+    ('RECUSADO','REC'),
     ]
 
 
