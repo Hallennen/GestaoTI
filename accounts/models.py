@@ -95,7 +95,7 @@ class AcontUser(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.user
+        return self.first_name
 
 
     def get_full_name(self):

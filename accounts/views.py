@@ -3,10 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import AcontUser
 from aplication.models import Folga
+from aplication.forms import FormsFolga
 from accounts import forms
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView,ListView
 from django.contrib import messages
 from django.urls import reverse_lazy
+
 
 # Create your views here.
 def login_view(request):
@@ -72,10 +74,11 @@ class DetailFeriasView(DetailView):
     template_name = 'myvacation.html'
 
 class DetailFolgasView(ListView):
-    model = Folga
+    model = AcontUser
+    http_method_names=['post', 'get']
     template_name = 'myrest.html'
-    context_object_name = 'folgas'
-
+    form_class= FormsFolga
+    
     
     
     def get_context_data(self, **kwargs):
@@ -84,6 +87,29 @@ class DetailFolgasView(ListView):
         context["aprovadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'APROVADO').count()
         context["pendentes"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'PENDENTE').count()
         context["recusadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'RECUSADO').count()
-
+        context['forms'] = self.form_class
         return (context)
+
+
     
+    def post(self, request,**kwargs):
+        pk = kwargs.get('pk')
+        unidade = AcontUser.objects.filter(pk=pk).values('unit')
+        unit = unidade[0]['unit']
+        new_form = FormsFolga(request.POST)
+        if new_form.is_valid():
+            print('valido')
+            FormsFolga.save(request.POST, pk, unit)
+
+
+                  
+        return redirect ('rest', pk=pk)
+    
+        # username =  AcontUser.objects.filter(pk=pk).values('username')[0]['username']
+        # user = request.user
+
+
+
+
+
+
