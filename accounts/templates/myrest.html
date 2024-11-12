@@ -12,30 +12,44 @@
         <div class="item-dados" id='dados-pendente'>
             <h2>Folgas Pendentes</h2>
             {% if pendentes > 0 %}
-                <h1>{{pendentes}}</h1>
+                <h1 id="numero">{{pendentes}}</h1>
             {% else %}
-                <h1>0</h1>
+                <h1 id="numero">0</h1>
             {% endif %}
         </div>
 
         <div class="item-dados" id='dados-aprovado'>
             <h2>Folgas Aprovadas</h2>
             {% if aprovadas > 0 %}
-                <h1>{{aprovadas}}</h1>
+                <h1 id="numero">{{aprovadas}}</h1>
             {% else %}
-                <h1>0</h1>
+                <h1 id="numero">0</h1>
             {% endif %}
         </div>
         <div class="item-dados" id='dados-recusado'>
             <h2>Folgas Recusadas</h2>
             {% if recusadas > 0 %}
-                <h1>{{recusadas}}</h1>
+                <h1 id="numero">{{recusadas}}</h1>
             {% else %}
-                <h1>0</h1>
+                <h1 id="numero">0</h1>
             {% endif %}
         </div>
         
     </div>
+
+    <div class="button-folga">
+        <button class="btn open" id="btn_solicitar_folga" >+ Incluir Solicitação</button>
+    </div>
+
+    <dialog class="modal">
+        <h2>Solicitação de Folga</h2>
+        <form class='nova_folga' method="POST">
+            {% csrf_token %}
+            {{forms}}
+            <button type="submit">Enviar</button>
+        </form>
+        <button type="button" class="btn close">X</button>
+    </dialog>
 
 
     <div class="painel-folgas">
@@ -44,8 +58,10 @@
         {% if folgas %}
             <div id="linha-titulos">
 
-                <div class="item" id='box'>Data:</div>
+                <div class="item" id='box'>Data da Folga:</div>
                 <div class="item" id='box'>Motivo:</div>
+                <div class="item" id='box'>Criação:</div>
+                <div class="item" id='box'>Aprovação:</div>
                 <div class="item" id='box'>Status:</div>
             </div>
             {% if folgas %}
@@ -54,7 +70,13 @@
 
                         <div class="item" id='box-folga'>{{folga.day}}</div>
                         <div class="item" id='box-folga'>{{folga.motivo}}</div>
-                        <div class="item" id='box-folga'>{{folga.status_folga}}</div>
+                        <div class="item" id='box-folga'>{{folga.date_created}}</div>
+                        {% if folga.date_updated != None %}
+                            <div class="item" id='box-folga'>{{folga.date_updated}}</div>
+                        {% else %}
+                            <div class="item" id='box-folga'>-</div>
+                        {% endif %}
+                        <div class="item-status" id='box-folga-status'>{{folga.status_folga}}</div>
                     </div>
             
                 {% endfor %}
@@ -66,7 +88,17 @@
         {% endif%}
         
 
-    
-    
     </div>
+    <script>
+        const modal = document.querySelector(".modal");
+        const openModalBtn = document.querySelector(".open");
+        const closeModalBtn = document.querySelector(".close");
+        
+        openModalBtn.addEventListener("click", () => modal.showModal());
+        
+        closeModalBtn.addEventListener("click", () => modal.close());
+
+    </script>
+    <script type="text/javascript" src="/static/aplication/scripts/rest.js"></script>
+    
 {% endblock %}

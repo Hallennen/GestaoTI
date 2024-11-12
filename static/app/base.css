@@ -114,13 +114,17 @@ ul{
 }
 
 footer{
-    /* background-color: rgb(142, 223, 223); */
-    background-color: #575a5d;
+    background-color: #575a5db0;
     position: fixed;
     color: white;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
+
+}
+
+p#footer{
+    margin: 8px 0px ;
 }
 

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',function() {
         let firstDayOfWeek = new Date(ano,mes,1).getDay()-1;
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
         var teste_dados = document.getElementById('dados');
-
+        console.log(teste_dados)
         if (teste_dados){
 
             
