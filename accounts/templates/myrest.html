@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/accounts/myreststyle.css">
+    <link rel="stylesheet" href="/static/accounts/myrest.css">
 {% endblock %}
 
 {% block content %}
 <!-- <h1>Minhas Folgas</h1> -->
-<p id='informativo'>**Número com base nas suas solicitações**</p>
+<div class="notificacao">
+    <p id='informativo'>**Número com base nas suas solicitações**</p>
+    {% if notificacao %}
+        {{notificacao}}
+    {% endif %}
+</div>
     <div class="dados-folgas">
 
         <div class="item-dados" id='dados-pendente'>
@@ -38,21 +43,25 @@
     </div>
 
     <div class="button-folga">
-        <button class="btn open" id="btn_solicitar_folga" >+ Incluir Solicitação</button>
-    </div>
+        <button class="btn open" id="btn_solicitar_folga" >+ Incluir Solicitação</but>
+        </div>   
 
     <dialog class="modal">
         <h2>Solicitação de Folga</h2>
         <form class='nova_folga' method="POST">
-            {% csrf_token %}
-            {{forms}}
-            <button type="submit">Enviar</button>
+            <table>
+                {% csrf_token %}
+                
+                {{forms.as_table}}
+            </table>
+            <input id='enviar_form' type="submit" value="Solicitar"></button>
         </form>
         <button type="button" class="btn close">X</button>
     </dialog>
 
 
     <div class="painel-folgas">
+
 
 
         {% if folgas %}
@@ -84,7 +93,8 @@
 
 
         {% else %}
-            <h1 class="sem_info">Sem folgas </h1>
+
+            <h1 class="texto">{{error_sem_folga}} </h1>
         {% endif%}
         
 
@@ -97,6 +107,14 @@
         openModalBtn.addEventListener("click", () => modal.showModal());
         
         closeModalBtn.addEventListener("click", () => modal.close());
+
+        
+        if (document.getElementById('id_Observação')){
+            const comment = document.getElementById('id_Observação');
+
+            comment.removeAttribute("required");
+        }
+
 
     </script>
     <script type="text/javascript" src="/static/aplication/scripts/rest.js"></script>

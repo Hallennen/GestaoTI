@@ -79,15 +79,16 @@ class DetailFolgasView(ListView):
     template_name = 'myrest.html'
     form_class= FormsFolga
     
-    
-    
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-day')[:8]
+        context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-date_created')[:8]
         context["aprovadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'APROVADO').count()
         context["pendentes"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'PENDENTE').count()
         context["recusadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'RECUSADO').count()
         context['forms'] = self.form_class
+        context['error_sem_folga'] = 'Sem Folga'
         return (context)
 
 
@@ -98,12 +99,18 @@ class DetailFolgasView(ListView):
         unit = unidade[0]['unit']
         new_form = FormsFolga(request.POST)
         if new_form.is_valid():
-            print('valido')
-            FormsFolga.save(request.POST, pk, unit)
-
-
+            FormsFolga.save(request.POST,pk,unit)
+            return redirect ('rest', pk=pk)
+        else:
+            context = {}
+            context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-date_created')[:8]
+            context["aprovadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'APROVADO').count()
+            context["pendentes"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'PENDENTE').count()
+            context["recusadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'RECUSADO').count()
+        
+            return render(request, 'myrest.html', {'notificacao':new_form.errors,'forms':self.form_class,'aprovadas':context['aprovadas'],
+                                                   'pendentes':context['pendentes'],'recusadas':context['recusadas'],'folgas':context['folgas']})
                   
-        return redirect ('rest', pk=pk)
     
         # username =  AcontUser.objects.filter(pk=pk).values('username')[0]['username']
         # user = request.user

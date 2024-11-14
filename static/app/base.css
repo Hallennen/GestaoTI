@@ -59,7 +59,7 @@ li.options-navbar{
     float:right;
     position: absolute ;
      flex-direction: column;
-    grid-template-columns: 0.2fr 2.0fr ;
+    grid-template-columns: 0.2fr 1fr ;
     grid-template-areas: 
         "collapse d-lg-block sidebar collapse bg-whiter" "box-center"; 
     min-height: 88.7vh;
