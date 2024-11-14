@@ -38,10 +38,20 @@ p#informativo{
     color: aliceblue;
 }
 
+.errorlist{
+    margin-left: 1px;
+    background:#e69d9d87;
+    color:#e40808;
+    font-weight:bold
+}
+
 
 .box-center{
     grid-template-rows: 0.1fr 1fr 0.2fr 3fr;
+    min-height: min-content;
+    min-width: min-content;
 }
+
 .button-folga{
     text-align: center;
     padding: 5px;
@@ -51,12 +61,12 @@ p#informativo{
 
 button#btn_solicitar_folga{
     color: white;
-    background: grey;
-    margin-top: -5px;
+    background: grey;    
+    padding: 5px;
     width: 40%;
     border: none;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    height: 120%;
+    /* height: 120%; */
     font-weight: bold;
     transition: 500ms;
 
@@ -89,6 +99,10 @@ button#btn_solicitar_folga:hover{
     font-weight: bolder;
 }
 
+.painel-folgas{
+    margin-left: 4px;
+}
+
 #linha-folga{
     margin-right: 5px;
     display: grid;
@@ -111,9 +125,9 @@ button#btn_solicitar_folga:hover{
     padding-bottom: 5px
 }
 
-h1.sem_info{
+.sem_info{
     display: flex;
-    margin-left: 20px;
+    margin-left: 40px;
     top: 50%;
 
 }
@@ -128,8 +142,9 @@ h1.sem_info{
     font-weight:bold;
 }
 
-/* modal */
 
+
+/* modal */
 
 
 .modal {
@@ -163,8 +178,6 @@ table{
 
 
 .nova_folga{
-    /* margin-top: 15% ; */
-    /* background:red; */
     padding: 10px;
     min-height:min-content;
 }
@@ -210,8 +223,6 @@ table{
 
 
 
-
-
 .modal::backdrop {
 background: rgba(0, 0, 0, .7);
 }   
@@ -228,7 +239,4 @@ button {
 font-family: "Poppins", sans-serif;
 }
 
-
-.btn:hover, .btn:focus, button:hover, button:focus {
-background-color: rgb(220, 214, 214)
-}
+/* fim do modal  */

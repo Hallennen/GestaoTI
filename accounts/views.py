@@ -117,6 +117,6 @@ class DetailFolgasView(ListView):
 
 
 
-
-
+class teste(TemplateView):
+    template_name = 'teste.html'
 

@@ -4,20 +4,22 @@
     font-size: bold;
 }
 .conteudo{
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas: 
+    "info-folga" "calendario";
     text-align: center;
     min-height: 850px;
     /* background-color: blue; */
 }
 
-.calendario{
-    left: 25%;
-    margin: 0 0 0 0;
-    position: absolute;
-    width: 50%;
-    text-align: center;
-    min-width: min-content;
-    overflow: hidden;
+
+.calendario{ 
+    padding-right: 10%;
+    padding-left: 10%;
 }
+
+
 
 .calendario header{
     position: relative;
@@ -73,12 +75,11 @@ a#btn_next, a#btn_prev{
     font-weight: 600;
     text-transform: uppercase;
     width: 500px;
-    /* border-bottom: 2px solid red; */
+
 }
 
 .calendario td{
     border: 1px solid black;
-    /* height: 71.4px; */
     height: 80px;
     text-align:center ;
     width: 500px;
@@ -120,8 +121,6 @@ a#btn_next, a#btn_prev{
     height: 7px;
     bottom: 7px;
     left: 46.5%;
-    /* margin: -3,5px 0 0 -3,5px; */
-    /* background: #00addf; */
     background: red;
     display: block;
     position: absolute;

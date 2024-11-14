@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/accounts/myrest.css">
+    <link rel="stylesheet" href="/static/accounts/myrest1.css">
 {% endblock %}
 
 {% block content %}
 <!-- <h1>Minhas Folgas</h1> -->
 <div class="notificacao">
-    <p id='informativo'>**Número com base nas suas solicitações**</p>
+    <p id='informativo'>**Número com base nas suas solicitações**  {{user.cargo}}</p>
     {% if notificacao %}
-        {{notificacao}}
+        <span class="notificacao">{{notificacao}}</span>
     {% endif %}
 </div>
     <div class="dados-folgas">

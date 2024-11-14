@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/aplication/css/editsolicitacao.css">
+
+{% endblock %}
+
+
+{% block content %}
+    <h1>solicitaçao</h1>
+    {% if folgas %}
+        {% for folga in folgas %}
+            {{folgas}}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
