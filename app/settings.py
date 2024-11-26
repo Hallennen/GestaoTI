@@ -140,3 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL =  '/media/'
+
+
+EMAIL_HOST_USER = 'hallennenm@gmail.com'
+EMAIL_HOST_PASSWORD = 'yryfxqhznnwnaatk'

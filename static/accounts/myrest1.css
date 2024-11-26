@@ -106,7 +106,7 @@ button#btn_solicitar_folga:hover{
 #linha-folga{
     margin-right: 5px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
     padding-bottom: 2px;
     padding-top: 2px;
     text-align: center;

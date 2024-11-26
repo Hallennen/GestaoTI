@@ -2,16 +2,61 @@
 
 {% block style %}
     <link rel="stylesheet" href="/static/aplication/css/editsolicitacao.css">
-
 {% endblock %}
 
+{% block content  %}
+    <div class="form-att">
+    <div class="tabela">
+        <form method="post">
+            {% csrf_token %}.
 
-{% block content %}
-    <h1>solicitaçao</h1>
-    {% if folgas %}
-        {% for folga in folgas %}
-            {{folgas}}
-        {% endfor %}
-    {% endif %}
+            <table>
+                <tbody>
+                    
+                    <tr>
+                        
+                        <th><label>DIA:</label></th>
+                        <td><input type="text" value='{{object.day}}' disabled></td>
+                    </tr>
+                    <tr>
 
-{% endblock %}
+                        <th><label>MOTIVO:</label></th>
+                        <td><input type="text" value='{{object.motivo}}' disabled></td>
+                    </tr>
+                    <tr>
+                        
+                        <th><label>DATA DE CRIAÇÃO:</label></th>
+                        <td><input type="text" value='{{object.date_created}}' disabled></td>
+                    </tr>
+                    <tr>
+                        <th><label>PESSOA SOLICITANTE:</label></th>
+                        <td><input type="text" value="{{object.folga_pessoa}}" disabled></td>
+                    </tr>
+                    <tr>
+                        <th><label>STATUS FOLGA:</label></th>
+                        <td>{{form.status_folga}}</td>
+                    </tr>
+                    <tr>
+                        <th><label>UNIDADE:</label></th>
+                        <td><input type="text" value="{{object.unit}}" disabled></td>
+                    </tr>
+                    <tr>
+                        <th><label>OBSERVAÇÃO:</label></th>
+                        <td><input id='observacao' type="Textarea" value="{{object.observacao}}" disabled></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="botoes">
+                
+                <input type="submit" value="Salvar" id="salvar-btn">
+                <a href="{% url 'viewsolicitacao'  %}"><input id="cancelar-btn" value="Cancelar"></a>
+
+            </div>
+        </div>
+    </form>
+    
+
+{% endblock%}
+
+

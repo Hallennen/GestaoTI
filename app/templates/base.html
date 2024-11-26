@@ -35,9 +35,14 @@
                     <a class="options-navbar" id="profile" href="{% url 'aplication' %}" title="calendário"><li id="calendario" class="options-navbar" >Calendário</li></a>
                     <a class="options-navbar" id="rest" href="{% url 'rest' user.pk %} "><li  id="rest" class="options-navbar">Minhas Folgas</li></a>
                     <a class="options-navbar" id="vacation" href="{% url 'vacation' user.pk %} "><li id="vacation" class="options-navbar">Minhas Férias</li></a>
+                    {% if user.cargo_id == 3 or user.cargo_id == 1%}
+                        <a class="options-navbar" id="router" href="{% url 'router' %} "><li id="router" class="options-navbar">Roteiro</li></a>
+                    {% endif %}
+
                     {% if user.cargo_id == 1 %}
                         <br><br><h1>{{user.cargo}}</h1>
-                        <a class="options-navbar" id="solicitacao" href="{% url 'editsolicitacao' %} "><li  id="solicitacao" class="options-navbar">Solicitações</li></a>
+                        <a class="options-navbar" id="solicitacao" href="{% url 'viewsolicitacao' %} "><li  id="solicitacao" class="options-navbar">Solicitações</li></a>
+                        <a class="options-navbar" id="viewgeral" href="{% url 'viewgeral' %} "><li  id="viewgeral" class="options-navbar">Visão Geral</li></a>
                     {% endif %}
                 {% endif %}
 

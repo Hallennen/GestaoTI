@@ -7,7 +7,7 @@
 {% block content %}
 <!-- <h1>Minhas Folgas</h1> -->
 <div class="notificacao">
-    <p id='informativo'>**Número com base nas suas solicitações**  {{user.cargo}}</p>
+    <p id='informativo'>**Número com base nas suas solicitações** </p>
     {% if notificacao %}
         <span class="notificacao">{{notificacao}}</span>
     {% endif %}
@@ -99,6 +99,7 @@
         
 
     </div>
+    <span>Últimas 10 solicitações</span>
     <script>
         const modal = document.querySelector(".modal");
         const openModalBtn = document.querySelector(".open");

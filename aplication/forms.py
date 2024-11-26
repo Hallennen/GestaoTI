@@ -32,7 +32,18 @@ DIAS_SEMANA = [
 class FormsFolga(forms.Form):
     Dia = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}))
     Motivo = forms.ChoiceField(choices=MOTIVOS_FOLGA)
-    Observação = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows":"4", "required":"False"}))
+    Observação = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows":"4", "required":"False","placeholder":"Máximo 50 caracteres"}))
+
+    # def clean_Dia(self):
+    #     date = self.cleaned_data.get('Dia')
+    #     date_exists = Folga.objects.filter(day = date, status_folga ='APROVADO').exists()
+    #     date_exists2 = Folga.objects.filter(day = date, status_folga ='PENDENTE').exists()
+    #     print('data existente',date_exists)
+    #     if date_exists == True or date_exists2 == True:
+    #         print('iguais')
+    #         raise ValidationError('erro')
+    #     else:
+    #         print('dia agendado')
 
 
     def clean_Dia(self):
@@ -41,13 +52,9 @@ class FormsFolga(forms.Form):
         ANO = int(data_separado[0])
         MES = int(data_separado[1])
         DIA = int(data_separado[2])
-        print(ANO)
-        print(MES)
-        print(DIA)
 
 
         dia_da_semana = datetime.date(year=ANO, month=MES, day=DIA)
-        print(type(dia_da_semana.isoweekday()))
 
         data_atual = datetime.date.today()
         folga_aprovada = Folga.objects.filter(day = dia, status_folga="APROVADO")
@@ -68,12 +75,9 @@ class FormsFolga(forms.Form):
             raise ValidationError(    [
                 (f"Só é possivel fazer solicitação em dias da semana (segunda - sexta)."),
             ])
-
         
 
-
-    
-        
+ 
         
     
 
@@ -95,3 +99,17 @@ class FormsFolga(forms.Form):
 
         # formfolga.save()
         # return formfolga
+    
+
+class FolgasFormUpdate(forms.ModelForm):
+    class Meta:
+        model = Folga
+        fields = ("status_folga",'date_updated',)
+
+
+    def clean_date_updated(self):
+        if not self.cleaned_data.get('date_updated'):
+            date_uptaded = datetime.date.today()
+            self.cleaned_data['date_updated'] = date_uptaded
+            
+        return self.cleaned_data['date_updated']

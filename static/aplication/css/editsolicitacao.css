@@ -3,3 +3,78 @@
     color: white;
     font-size: bold;
 }
+
+.conteudo-principal{
+    align-content: center;
+    min-width: min-content;
+    min-height: min-content;
+}
+
+.form-att{
+    display: flex;
+    padding: 10%;
+    justify-content: center;
+    min-width: min-content;
+    min-height: min-content;
+
+
+}
+
+input{
+    width: 320px ;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input#observacao{
+    display: flex;
+    width: 320px ;
+    height: 35px;
+}
+
+select{
+    width: 320px ;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    /* background-color: orange; */
+    min-width: min-content;
+    min-height: min-content;
+}
+
+th{
+    text-align: justify;
+}
+
+.botoes{
+    padding: 20px;
+}
+
+.botoes input{
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    
+}
+#cancelar-btn{
+    background: rgba(255, 0, 0, 0.835);
+}
+
+#salvar-btn{
+    background:rgb(1, 223, 71);
+}
+
+input{
+    background:rgba(128, 128, 128, 0.55);
+}
+
+
+

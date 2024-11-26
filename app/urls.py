@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView, teste
-from aplication.views import EditSolicitacao
+from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView
+from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter
 
 
 urlpatterns = [
@@ -28,17 +28,25 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout' ),
 
+    #user default
     path('profile/<int:pk>/', DetailProfileView.as_view(), name='profile'),
-    path('profile/<int:pk>/edit/', UpdateProfileView.as_view(), name='edit-profile'),
-    path('profile/create/', CreateView.as_view(), name='create'),
-    
+    path('profile/<int:pk>/edit/', UpdateProfileView.as_view(), name='edit-profile'),    
     path('aplication/', AplicationView.as_view(), name='aplication' ),
-
-
     path('folgas/<int:pk>/', DetailFolgasView.as_view(), name='rest'),
+
+
     #gestor
-    path('solicitacao/', EditSolicitacao.as_view(), name='editsolicitacao'),
+    path('solicitacao/',ViewSolicitacao.as_view(), name='viewsolicitacao'),
+    path('solicitacao/<int:pk>', EditSolicitacao.as_view(), name='editsolicitacao'),
+    path('visaogeral/', ViewGeral.as_view(), name='viewgeral'),
     
+
+    ## VOLANTE / GESTOR
+    path('roteiro/', ViewRouter.as_view(), name='router'),
+
+
+
+    ##pendente
     path('ferias/<int:pk>/', DetailFeriasView.as_view(), name='vacation'),
 
 

@@ -5,4 +5,4 @@ from aplication.models import Folga
 
 @admin.register(Folga)
 class folga(admin.ModelAdmin):
-    list_display = ['day','motivo','folga_pessoa', 'status_folga']
+    list_display = ['day','motivo','folga_pessoa','unit', 'status_folga']

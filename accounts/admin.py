@@ -15,7 +15,7 @@ class UnitAdmin(admin.ModelAdmin):
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
-    list_display= ('position_name',)
+    list_display= ('id','position_name',)
 
 
 # class UserAdmin(BaseUserAdmin):

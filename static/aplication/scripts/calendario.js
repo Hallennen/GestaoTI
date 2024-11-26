@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded',function() {
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
         var teste_dados = document.getElementById('dados');
         console.log(teste_dados)
-        if (teste_dados){
+    //     if (teste_dados){
 
             
-            var teste = document.getElementById('dados').textContent;
-            var dia_informado = (teste.split('-'))[2];
-            var mes_informado = (teste.split('-'))[1];
-            var ano_informado = (teste.split('-'))[0];
-        }
+    //         var teste = document.getElementById('dados').textContent.split(',')[1];
+    //         var dia_informado = (parseInt(teste.split('-'))[2]);
+    //         var mes_informado = (parseInt(teste.split('-'))[1]);
+    //         var ano_informado = (ParseInt(teste.split('-'))[0]);
+    //     }
 
 
-    //    var datas_folga = document.querySelectorAll('#dados')
+    //    var datas_folga = document.querySelectorAll('#dados');
 
 
         for (var i = -firstDayOfWeek ,index=0; i < (42-firstDayOfWeek); i++ , index++){
@@ -51,10 +51,11 @@ document.addEventListener('DOMContentLoaded',function() {
                 dayTable.classList.add('proximo-mes')
             }
             
-            if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
-                console.log('true');
-                dayTable.classList.add('event')
-            }
+            // if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
+            //     alert('sim');
+            //     console.log('true');
+            //     dayTable.classList.add('event')
+            // }
 
         }
 
@@ -67,10 +68,10 @@ document.addEventListener('DOMContentLoaded',function() {
         //         var dia_informado = (folga.split('-'))[2];
         //         var mes_informado = (folga.split('-'))[1];
         //         var ano_informado = (folga.split('-'))[0];
-        //         // data.getFullYear() == ano_informado && data.getMonth()+1 == mes_informado && data.getDate() == dia_informado
+        //         data.getFullYear() == ano_informado && data.getMonth()+1 == mes_informado && data.getDate() == dia_informado
 
-        //         // console.log('true');
-        //         // dayTable.classList.add('event')
+        //         console.log('true');
+        //         dayTable.classList.add('event')
         //     }
         // }
 

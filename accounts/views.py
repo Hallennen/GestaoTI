@@ -69,9 +69,18 @@ class UpdateProfileView(UpdateView):
 
 
 
+
+
+
 class DetailFeriasView(DetailView):
     model = AcontUser
     template_name = 'myvacation.html'
+
+
+
+
+
+
 
 class DetailFolgasView(ListView):
     model = AcontUser
@@ -83,7 +92,7 @@ class DetailFolgasView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-date_created')[:8]
+        context["folgas"] = Folga.objects.filter(folga_pessoa_id=self.request.user).values().order_by('-date_created')[:10]
         context["aprovadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'APROVADO').count()
         context["pendentes"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'PENDENTE').count()
         context["recusadas"] = Folga.objects.filter(folga_pessoa_id=self.request.user, status_folga= 'RECUSADO').count()
@@ -115,8 +124,4 @@ class DetailFolgasView(ListView):
         # username =  AcontUser.objects.filter(pk=pk).values('username')[0]['username']
         # user = request.user
 
-
-
-class teste(TemplateView):
-    template_name = 'teste.html'
 

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/aplication/css/routers.css">
+{% endblock%}
+
+{% block content %}
+    <div class="form_filtro">
+
+        <form>
+            <label for="">De:</label>
+            <input type="date" name="date_of" id="" required>
+            <label for="">Até:</label>
+            <input type="date" name="date_at" id="" required>
+            <input id="submit" type="submit">
+        </form>
+    </div>
+
+    <div id="linha-tituloss">
+        
+        <div class="item" id='box'>DATA DA FOLGA:</div>
+        <div class="item" id='box'>UNIDADE</div>
+        <div class="item" id='box'>STATUS:</div>
+        <div class="item" id='box'>ENDEREÇO:</div>
+    </div>
+    {% if routers %}
+    
+        {% for router in routers %}
+        <div class="folgas">
+
+            <div id="linha-folga" title="" alt="">
+            
+                <div class="linha-folga item">{{router.day}}</div>
+                <div class="linha-folga item">{{router.unit}}</div>
+                <div class="linha-folga item" id='linha_status_folga'>{{router.status_folga}}</div>
+                <div class="linha-folga item">{{router.unit.logradouro}}, {{router.unit.adress}}, {{router.unit.number_adress}}</div>
+            </div>
+
+        </div>
+            
+
+        {% endfor %}
+    {% else %}
+    <h3>
+        Não encontrado folgas para o periodo selecionado.
+    </h3>
+
+    {% endif %}
+
+{% endblock %}
