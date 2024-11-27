@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
         if not password:
             raise ValueError("O Usuário deve ter uma senha.")
         user_obj = self.model(
-            user = self.normalize_user(user)
+            user = user
         )
         user_obj.set_password(password) # muda a senha
         user_obj.staff = is_staff
@@ -95,7 +95,7 @@ class AcontUser(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.first_name +' '+ self.last_name
+        return self.user
 
 
     def get_full_name(self):
