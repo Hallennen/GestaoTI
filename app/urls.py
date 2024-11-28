@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView
+from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView,recuperacao_senha
 from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter
 
 
@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout' ),
+    path('reset/', recuperacao_senha, name='recuperacao_senha' ),
 
     #user default
     path('profile/<int:pk>/', DetailProfileView.as_view(), name='profile'),

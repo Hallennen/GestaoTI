@@ -142,3 +142,29 @@ button#salvar:hover{
 a#editar{
     grid-column: span 2;
 }
+
+input#password1, input#password2{
+	padding:5px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+.btn.close {
+    display: flex;
+    align-items: center;
+    clip-path: circle();
+    position: absolute;
+    top: 15px;  
+    right: 15px;
+    height: 10px;
+    padding: 0.8rem 0.8rem;
+    /* aspect-ratio: ; */
+}
+
+
+h2#titulo{
+    text-align: center;
+    margin:  30px;
+}

@@ -16,4 +16,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = AcontUser
         # fields = "__all__"
-        fields = ['photo','username','first_name','last_name','birthday','telephone','email','ramal', 'unit']        
+        fields = ['photo','username','first_name','last_name','birthday','telephone','email','ramal', 'unit']  
+
+
+class ChangePasswordForm(forms.ModelForm):
+    password1 = forms.PasswordInput()
+    password2 = forms.PasswordInput()
+

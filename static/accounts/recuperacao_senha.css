@@ -51,8 +51,19 @@ body{
     /* background-color: blue; */
 }
 
+form{
+    margin-top: 10% ;
+}
+
 .alert_error{
     background: red;
+    font-size: larger;
+    color: white;
+    font-weight: bold;
+}
+
+.alert{
+    background: rgba(4, 210, 42, 0.683);
     font-size: larger;
     color: white;
     font-weight: bold;

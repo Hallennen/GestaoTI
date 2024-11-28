@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/accounts/profile.css">
+    <link rel="stylesheet"  href="/static/accounts/profile.css">
+    <script type="text/javascript" src="/static/accounts/scripts/profile.js""></script>
+    
 {% endblock %}
 
 {% block content %}
@@ -63,13 +65,44 @@
                     {{user.ramal}}<br>
                 </div>
                 
+
                 <a id="editar" href="{% url 'edit-profile' object.pk  %}">    
                     <button id="editar" type="submit">Editar Dados</button>
                 </a>
+                <a id="editar" class="open">    
+                    <button id="editar" type="submit">Alterar Senha</button>
+                </a>
+
+                <dialog class="modal">
+                    <form class='alteracao-folga' method="POST">
+                        {% csrf_token %}
+                        <h2 id='titulo'>Alteração de senha</h2>
+                        <Label>Nova senha: </Label><br>
+                        <input id=password1 type="password" name="password1" required onblur="AlterarSenha()" ><br>
+                        <label>Repita a nova senha: </label><br>
+                        <input id=password2 type="password" name="password2" required onblur="AlterarSenha()"
+                            onkeypress="AlterarSenha()"><br>
+
+                        <p id='helpSenha'>O botão de Salvar alteração só aparecera quando as senha coincidirem.</p>
+
+                        <button id='salvar'  class="alterarSenha" onclick="ConfirmarAlteracao()">Alterar Senha</button>
+                    </form>
+                    <button type="button" class="btn close">X</button>
+                </dialog>
 
             </section>
         </section>
     </div>
 
+    <script>
+        const modal = document.querySelector(".modal");
+        const openModalBtn = document.querySelector(".open");
+        const closeModalBtn = document.querySelector(".close");
+
+        openModalBtn.addEventListener("click", () => modal.showModal());
+
+        closeModalBtn.addEventListener("click", () => modal.close());
+        document.getElementById('salvar').style.display='none';
+    </script>
 
 {% endblock %}

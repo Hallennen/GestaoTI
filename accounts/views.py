@@ -8,6 +8,8 @@ from accounts import forms
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView,ListView
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.auth.hashers import make_password
+from accounts.email_template import reset_senha
 
 
 # Create your views here.
@@ -34,6 +36,25 @@ def logout_view(request):
     logout(request)
     return redirect ('login')
 
+def recuperacao_senha(request):
+    if request.method == 'GET':
+        return render(request,'recuperacao_senha.html')
+    if request.method == 'POST':
+        email = request.POST['email']
+        if AcontUser.objects.filter(email= email).exists():
+            reset_senha(email)
+            print('email enviado de reset com sucesso')
+            return render(request,'recuperacao_senha.html',{'messages_positiva':'E-mail enviado'})
+        else:
+            return render(request,'recuperacao_senha.html',{'messages':'nenhum email encontrado'})
+
+
+
+
+
+
+
+
 
 
 class AplicationView(TemplateView):
@@ -52,6 +73,19 @@ class AplicationView(TemplateView):
 class DetailProfileView(DetailView):
     model = AcontUser
     template_name = 'Profile.html'
+
+    def post(self, request, **kwargs):
+        pk = kwargs.get('pk')
+        senha1 = request.POST['password1']
+        senha2 = request.POST['password2']
+        if senha1 == senha2:
+            print("iguais")
+            senha1 = make_password(senha1)
+            AcontUser.objects.filter(pk=pk).update(password=senha1)
+            print('senha alterada')
+
+            return redirect ('login')
+
 
 
 

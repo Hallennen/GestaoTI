@@ -27,37 +27,38 @@ def post_save(sender,instance,**kargs):
             send_email(corpo_email,emails)
     else:
         emails = email_gestao[0]['email']
+
+
+
         try: 
             send_email(corpo_email)
 
         except:
             ...
 
-    
-    return  
 
 
 
 def send_email(body_message,to_message=any):
-        corpo_email= body_message
+    corpo_email= body_message
 
-        message = email.message.Message()
-        message["Subject"] = "Nova solicitação de folga - GestãoTI"
-        message["From"] = EMAIL_HOST_USER
-        message["To"] = "hallennen.marinho3@gmail.com"
-        password = EMAIL_HOST_PASSWORD
-        message.add_header('Content-Type', 'text/html')
-        message.set_payload(corpo_email)
-        
-        # creates SMTP session
-        s = smtplib.SMTP('smtp.gmail.com', 587)
-        # start TLS for security
-        s.starttls()
-        # Authentication
-        s.login(message["From"], password)
-        # sending the mail
-        s.sendmail(message["From"], message["To"], message.as_string().encode('utf-8'))
-        # terminating the session
-        s.quit()
+    message = email.message.Message()
+    message["Subject"] = "Nova solicitação de folga - GestãoTI"
+    message["From"] = EMAIL_HOST_USER
+    message["To"] = "hallennen.marinho3@gmail.com"
+    password = EMAIL_HOST_PASSWORD
+    message.add_header('Content-Type', 'text/html')
+    message.set_payload(corpo_email)
+    
+    # creates SMTP session
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    # start TLS for security
+    s.starttls()
+    # Authentication
+    s.login(message["From"], password)
+    # sending the mail
+    s.sendmail(message["From"], message["To"], message.as_string().encode('utf-8'))
+    # terminating the session
+    s.quit()
 
-        print('email enviado para:' , message["To"] )
+    print('email enviado para:' , message["To"] )
