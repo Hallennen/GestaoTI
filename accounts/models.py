@@ -88,6 +88,7 @@ class AcontUser(AbstractUser):
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to= 'profile/', blank=True, null=True,  verbose_name = "Foto")
+    path = models.CharField(max_length=200, null=True, blank=True, verbose_name = 'Caminho Arquivos')
 
     USERNAME_FIELD = 'user'
     REQUIRED_FIELDS = []

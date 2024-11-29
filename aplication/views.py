@@ -5,11 +5,14 @@ from accounts.models import AcontUser
 from aplication.forms import FolgasFormUpdate
 from django.urls import reverse_lazy
 import pandas as pd
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 from  datetime import datetime
 
 # Create your views here.
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class ViewSolicitacao(ListView):
     model = Folga
     template_name = 'viewsolicitacao.html'
@@ -24,7 +27,7 @@ class ViewSolicitacao(ListView):
         return context
     
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class EditSolicitacao(UpdateView):
     model = Folga
     template_name = 'EditSolicitacao.html'
@@ -43,7 +46,7 @@ class EditSolicitacao(UpdateView):
 
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class ViewGeral(ListView):
     model = Folga
     template_name = 'viewgeral.html'
@@ -101,20 +104,26 @@ class ViewGeral(ListView):
 
         dta_of = self.request.POST['date_for']
         dta_at = self.request.POST['date_at']
-                                    
-        arquivo = open(f'relatorio{dta_of}-{dta_at}','+a', encoding='utf-8')
-        arquivo.write(f'PERIODO: {str(dta_of)} á {str(dta_at)}\n\nDT_FOLGA;MOTIVO;DT_CRIAÇÃO;STATUS;TECNICO;UNIDADE \n')
-        # arquivo.write(str(folga.values()))
-        for folg in folga:
-            arquivo.write(f'{folg.day};{folg.motivo};{folg.date_created};{folg.status_folga};{folg.folga_pessoa};{folg.unit}\n')
-        
-        alerta = 'Relatório gerado' 
 
+       
+        path = AcontUser.objects.filter(pk = self.request.user.id).values('path')
+        try:
+            path_ajustado =path[0]['path']
+            arquivo = open(f"{path_ajustado}relatorio{dta_of}-{dta_at}",'+a', encoding='utf-8')
+            arquivo.write(f'PERIODO: {str(dta_of)} á {str(dta_at)}\n\nDT_FOLGA;MOTIVO;DT_CRIAÇÃO;STATUS;TECNICO;UNIDADE \n')
+            for folg in folga:
+                arquivo.write(f'{folg.day};{folg.motivo};{folg.date_created};{folg.status_folga};{folg.folga_pessoa};{folg.unit}\n')
+            
+            alerta = 'Relatório gerado' 
+            return render(request,'viewgeral.html',{'alerta':alerta,'folgas':folga,'unidades':unidades, 'tecnicos':tecnicos})
+        except:
 
-        return render(request,'viewgeral.html',{'alerta':alerta,'folgas':folga,'unidades':unidades, 'tecnicos':tecnicos})
+            alerta = ' Não foi possivel salvar o relatório, verifique o path salvo '
+
+            return render(request,'viewgeral.html',{'alerta_negativo':alerta,'folgas':folga,'unidades':unidades, 'tecnicos':tecnicos})
     
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class ViewRouter(ListView):
     model = Folga
     template_name = 'routers.html'

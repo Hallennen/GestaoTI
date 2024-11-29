@@ -121,6 +121,12 @@ span#erro{
     margin-left: 10px;
 }
 
+span#erro_negativo{
+    color: #930a00;
+    font-weight: bold; 
+    background: #fa929242;
+    margin-left: 10px;
+}
 
 button.open{
     color: white;

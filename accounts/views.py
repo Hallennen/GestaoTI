@@ -10,6 +10,9 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.hashers import make_password
 from accounts.email_template import reset_senha
+import random
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -36,14 +39,21 @@ def logout_view(request):
     logout(request)
     return redirect ('login')
 
+
 def recuperacao_senha(request):
     if request.method == 'GET':
         return render(request,'recuperacao_senha.html')
     if request.method == 'POST':
         email = request.POST['email']
+
         if AcontUser.objects.filter(email= email).exists():
-            reset_senha(email)
-            print('email enviado de reset com sucesso')
+            lista = "abcdefghijklmnopqrstuvwxyz123456789!@##$%&*()_+ABCDEFGHIJLMNOPQRSTUVZXYW"
+            senha = "".join(random.sample(lista,8))  
+            senha_hash = make_password(senha)
+            AcontUser.objects.filter(email= email).update(password = senha_hash)
+            
+            reset_senha(email,senha)
+
             return render(request,'recuperacao_senha.html',{'messages_positiva':'E-mail enviado'})
         else:
             return render(request,'recuperacao_senha.html',{'messages':'nenhum email encontrado'})
@@ -56,7 +66,7 @@ def recuperacao_senha(request):
 
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class AplicationView(TemplateView):
     template_name = 'aplication.html'   
 
@@ -69,7 +79,7 @@ class AplicationView(TemplateView):
         return ({'context':context, 'contadores':extra_context})
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailProfileView(DetailView):
     model = AcontUser
     template_name = 'Profile.html'
@@ -79,16 +89,14 @@ class DetailProfileView(DetailView):
         senha1 = request.POST['password1']
         senha2 = request.POST['password2']
         if senha1 == senha2:
-            print("iguais")
             senha1 = make_password(senha1)
             AcontUser.objects.filter(pk=pk).update(password=senha1)
-            print('senha alterada')
 
             return redirect ('login')
 
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateProfileView(UpdateView):
     model = AcontUser
     template_name = 'editprofile.html'
@@ -105,7 +113,7 @@ class UpdateProfileView(UpdateView):
 
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailFeriasView(DetailView):
     model = AcontUser
     template_name = 'myvacation.html'
@@ -115,7 +123,7 @@ class DetailFeriasView(DetailView):
 
 
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailFolgasView(ListView):
     model = AcontUser
     http_method_names=['post', 'get']

@@ -2,6 +2,7 @@ import smtplib,  email.message
 from app.settings import EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 import random
 from accounts.models import AcontUser
+from django.contrib.auth.hashers import make_password
 
 
 
@@ -29,12 +30,9 @@ def send_email(assunto, body_message ,to_message=any):
     print('email enviado para:' , message["To"] )
 
 
-def reset_senha(email_destino ):
+def reset_senha(email_destino, senha ):
     assunto= " RESET DE SENHA   -- GESTAOTI--"
-    
-    numero = 10
-    lista = "abcdefghijklmnopqrstuvwxyz123456789!@##$%&*()_+"
-    senha = "".join(random.sample(lista,numero))  
+
         
     corpo_email = f"""
             <h1> Foi realizado o reset de senha com sucesso. </h1> 
@@ -43,6 +41,7 @@ def reset_senha(email_destino ):
             """
     
     try: 
+
         send_email(assunto,corpo_email,email_destino)
 
     except:
@@ -67,15 +66,16 @@ def solicitacao_folga(instance):
     email_gestao= AcontUser.objects.filter(cargo_id = 1).values('email')
 
     emails = []
-    if email_gestao.count() > 0:
+    if email_gestao.count() > 1:
         for i in range(email_gestao.count()):
             emails = email_gestao[i]['email']
-            send_email(assunto,corpo_email,emails)
+            try: 
+                send_email(assunto,corpo_email,emails)
+            except:
+                ...
+
     else:
         emails = email_gestao[0]['email']
-
-
-
         try: 
             send_email(assunto,corpo_email,emails)
 
@@ -83,5 +83,35 @@ def solicitacao_folga(instance):
             ...
 
 
+
+
+
+def aprovacao_folga(instance):
+        assunto = "Folga incluida no seu roteiro - GestãoTI"
+
+        corpo_email= f"""
+            <h1> Uma folga foi aprovada e adicionada em seu roteiro. </h1> 
+            <p> Data da Folga: <strong>{instance.day}</strong>.</p>
+            <p> Unidade: <strong>{instance.unit}</strong>.</p>
+            <p> Data da aprovação <strong>{instance.date_updated}</strong>.</p>
+
+            """
+        email_volantes = AcontUser.objects.filter(cargo_id = 3).values('email')
+
+        emails= []
+        if email_volantes.count() > 1:
+            for i in range(email_volantes.count()):
+                emails = email_volantes[i]['email']
+                try:
+                    send_email(assunto,corpo_email,emails)
+                except:
+                    ...
+        else:
+            emails = email_volantes[0]['email']
+            try: 
+                send_email(assunto,corpo_email,emails)
+
+            except:
+                ...
 
 

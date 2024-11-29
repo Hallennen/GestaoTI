@@ -7,16 +7,24 @@
 {% block content %}
     <div class="info-form">
         <section class="content">        
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <section class="grid grid-auto-rows-2">
                     <div class="photo">
                     {% if user.photo %}
-                        <img id="foto" src="/media/{{user.photo}}" alt="" srcset="">
+                        <img class='open' id="foto" src="/media/{{user.photo}}" alt="" srcset="">
                         {% else %}
-                        <img id="foto"src="/media/image/padrao.png">
+                        <img class='open' id="foto"src="/media/image/padrao.png">
                         {% endif %}
                     </div>
+
+                    <dialog class="modal">
+                        <h2>Alteração de foto</h2>
+                        {{form.photo}}
+                        <button class='enviar_foto' type="submit">Enviar foto</button>
+                        <button type="button" class="btn close">X</button>
+                    </dialog>
+
                     
                         
                         
@@ -59,6 +67,12 @@
                         <label id="form">Ramal:</label><br>
                         {{form.ramal}}<br>
                     </div>
+                    <div class="item item-grande">
+                        <label id="form">Path_:</label><br>
+                        {{form.path}}<br>
+                    </div>
+
+                  
 
                     <button id="salvar" type="submit">Salvar alteração</button>
                     
@@ -66,6 +80,14 @@
             </form>
         </section>
     </div>
-
+    <script>
+        const modal = document.querySelector(".modal");
+        const openModalBtn = document.querySelector(".open");
+        const closeModalBtn = document.querySelector(".close");
+        
+        openModalBtn.addEventListener("click", () => modal.showModal());
+        
+        closeModalBtn.addEventListener("click", () => modal.close());
+    </script>
 
 {% endblock %}

@@ -151,6 +151,11 @@ input#password1, input#password2{
 	margin-bottom: 10px;
 }
 
+input[type=checkbox], input[type=file]{
+    width: auto;
+    height: auto;
+}
+
 .btn.close {
     display: flex;
     align-items: center;
@@ -167,4 +172,34 @@ input#password1, input#password2{
 h2#titulo{
     text-align: center;
     margin:  30px;
+}
+
+img#foto:hover{
+    cursor: pointer;
+    filter: grayscale(80%);
+    background-image: url('/media/image/trocar_foto.png');
+}
+
+.modal{
+
+    text-align: center;
+}
+
+button.enviar_foto{
+    text-align: center;
+    padding: 7px;
+    background-color:  #008000;
+    color: white;
+    font-weight: bolder;
+    font-family: 'Helvetica';
+    margin: 10px;
+    margin-top: 20px;
+}
+button.enviar_foto:hover{
+    cursor: pointer;
+    background-color: #2bdf03;
+
+        
+
+
 }

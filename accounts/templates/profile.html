@@ -2,7 +2,7 @@
 
 {% block style %}
     <link rel="stylesheet"  href="/static/accounts/profile.css">
-    <script type="text/javascript" src="/static/accounts/scripts/profile.js""></script>
+    <script type="text/javascript" src="/static/accounts/scripts/profile.js"></script>
     
 {% endblock %}
 
@@ -64,6 +64,11 @@
                     <label id="form">Ramal:</label><br>
                     {{user.ramal}}<br>
                 </div>
+
+                <div class="item item-grande">
+                    <label id="form">Path_:</label><br>
+                    {{user.path}}<br>
+                </div>
                 
 
                 <a id="editar" href="{% url 'edit-profile' object.pk  %}">    
@@ -93,6 +98,7 @@
             </section>
         </section>
     </div>
+
 
     <script>
         const modal = document.querySelector(".modal");

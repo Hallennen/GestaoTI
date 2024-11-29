@@ -1,6 +1,7 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from accounts.models import AcontUser
+from aplication.models import Folga
 from django.contrib.auth.hashers import make_password
 
 
@@ -14,8 +15,7 @@ def pre_save(sender,instance, **kwargs):
             
 
         return instance.password    
-    
 
-    
+
 
     

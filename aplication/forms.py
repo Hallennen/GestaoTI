@@ -94,11 +94,6 @@ class FormsFolga(forms.Form):
         )
         folga.save()
 
-        return print('salvo')
-
-
-        # formfolga.save()
-        # return formfolga
     
 
 class FolgasFormUpdate(forms.ModelForm):
