@@ -142,5 +142,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL =  '/media/'
 
 
-EMAIL_HOST_USER = 'hallennenm@gmail.com'
-EMAIL_HOST_PASSWORD = 'yryfxqhznnwnaatk'
+EMAIL_HOST_USER = 'gestaotinoreply@gmail.com'
+EMAIL_HOST_PASSWORD = 'nkesughiguixdsqh'
