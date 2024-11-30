@@ -122,3 +122,59 @@ p#footer{
     margin: 8px 0px ;
 }
 
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    * {
+        width: auto;
+        height: auto;
+    }
+
+    .calendario {
+
+    }
+
+    .info-folga {
+        background-color: burlywood;
+        width: 90%;
+    }
+
+    .box-center {
+        display: table-row-group;
+    }
+
+    .ld_esquerdo {
+        background-color: turquoise;
+    }
+
+    .ld_direito {
+    background-color: tomato;
+
+    }
+
+    .conteiner {
+        display: flex;
+        width: 100vw;
+    }
+
+    .title-system {
+        text-align: center;
+        padding-left: 62px;    }
+
+    .header-top {
+        width: 100%;
+    }
+
+    .conteudo-principal {
+        display: block;
+
+    }
+
+    .box-lateral {
+        background-color: chartreuse;
+    }
+}
