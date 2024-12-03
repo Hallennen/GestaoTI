@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/accounts/recuperacao_senha.css">
+    <title>LOGIN -  GestaoTI</title>
+</head>
+<body>
+    <div class="title">
+        <h1>--GestaoTI--</h1>
+    </div>
+    <div class="box-left">
+    </div>
+    <div class="box-center">
+        <div class="conteudo">
+
+            <form method="POST">
+                {% csrf_token %}
+                <label>Email:</label><br>
+                <input type='email' name="email" required>
+                {% if messages %}
+                    <div class="alert_error" role="alert">
+                        {{ messages }}
+                    </div>
+                {% endif %}
+
+                {% if messages_positiva %}
+                    <div class="alert" role="alert">
+                        {{ messages_positiva }}
+                    </div>
+                {% endif %}
+                <input type="submit" value="Recuperar"><br>
+                <a id='esqueci_senha' href="{% url 'login' %}">Fazer login</a>
+        
+            </form>
+        </div>
+    </div>
+    <div class="box-right">
+        <h3></h3>
+    </div>
+    
+</body>
+</html>

@@ -88,6 +88,7 @@ class AcontUser(AbstractUser):
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to= 'profile/', blank=True, null=True,  verbose_name = "Foto")
+    path = models.CharField(max_length=200, null=True, blank=True, verbose_name = 'Caminho Arquivos')
 
     USERNAME_FIELD = 'user'
     REQUIRED_FIELDS = []
@@ -95,12 +96,14 @@ class AcontUser(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.user
+        if self.first_name and self.last_name:
+            return  f'{self.first_name} {self.last_name}' 
+        else:
+            return self.user
 
 
     def get_full_name(self):
-        return (self.first_name + self.last_name) 
-    
+        return f'{self.first_name} {self.last_name}'    
     def get_short_name(self):
         return self.first_name
 
