@@ -1,8 +1,7 @@
 from django.db.models.signals import post_save, pre_save
-from aplication.models import Folga
+from aplication.models import Folga, Ferias
 from django.dispatch import receiver
 from accounts.email_template import solicitacao_folga, aprovacao_folga
-from app.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 
 
@@ -16,4 +15,5 @@ def post_save(sender,created,instance,**kargs):
     if instance.status_folga == 'APROVADO':
         print('aqui foi aprovado')
         aprovacao_folga(instance)
+
 

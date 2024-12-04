@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/aplication/css/listvacation.css">
+{% endblock %}
+
+{% block content %}
+    <h2>
+        Ferias a acrescentar!
+    </h2>
+    <div class='form-ferias'>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            {{form}}
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    {% if feriass %}
+        <div class="ferias-painel">
+
+            <div id="linha-tituloss">
+                
+                <div class="item" id='box'>TÉCNICO:</div>
+                <div class="item" id='box'>DATA INICIO:</div>
+                <div class="item" id='box'>DATA FIM:</div>
+                <div class="item" id='box'>MES:</div>
+                <div class="item" id='box'>UNIDADE:</div>
+                <div class="item" id='box'>AÇÃO:</div>
+            </div>
+            
+            {% for ferias in feriass %}
+                <div id="linha-ferias" title=' {{ferias.pk}}' >
+                    
+                    <div class="linha-ferias item" >{{ferias.pessoa_vacation}}</div>
+                    <div class="linha-ferias item">{{ferias.start_vacation}}</div>
+                    <div class="linha-ferias item">{{ferias.end_vacation}}</div>
+                    <div class="linha-ferias item">{{ferias.month}}</div>
+                    <div class="linha-ferias item">{{ferias.unit}}</div>
+                    <div class="linha-ferias item acao">
+                        <a href="" class="icon-editar" onclick='teste()'><img id='editar' src="/media/image/editar.png" alt="" width="20px" height="20px"></a>
+                        <a href="{% url 'excluirvacation' ferias.id %}"  title=' Excluir Registro' class="icon-excluir"><img id='excluir' src="/media/image/excluir.png" alt="" width="20px" height="20px"></a>
+                    </div>
+            
+                </div>
+            
+            {% endfor %}
+            
+    
+        </div>
+    {% endif %}
+
+    <script>
+        function teste(){
+            alert('ola')
+        }
+    </script>
+
+
+
+{% endblock %}
