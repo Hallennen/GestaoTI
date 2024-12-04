@@ -1,22 +1,31 @@
 .options-navbar#calendario{
-    background-color: rgb(50, 35, 72);
+    background-color: rgb(134, 134, 146);
     color: white;
     font-size: bold;
+    text-align: center;
 }
 .conteudo{
+    border-radius: 20px;
     display: grid;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 0fr 1fr;
     grid-template-areas: 
     "info-folga" "calendario";
     text-align: center;
     min-height: 850px;
-    /* background-color: blue; */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+}
+
+.info-folga {
+    border-radius: 20px 20px 0 0;
+    background-color: rgba(134, 134, 146, 0.11);
+    
 }
 
 
 .calendario{ 
     padding-right: 10%;
     padding-left: 10%;
+    border-radius: 20px;
 }
 
 
@@ -140,6 +149,3 @@ a#btn_next, a#btn_prev{
 .ano{
     margin-top: 10px;
 }
-
-
-
