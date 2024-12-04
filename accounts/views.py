@@ -13,6 +13,7 @@ from accounts.email_template import reset_senha
 import random
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import datetime
 
 
 # Create your views here.
@@ -120,15 +121,12 @@ class DetailFeriasView(ListView):
 
 
 
-    # def get_context_data(self, **kwargs):
-    #     pk = kwargs.get('pk')
-    #     print(pk)
-    #     print(type(pk))
-    #     ferias = super().get_context_data(**kwargs)
-    #     ferias['ferias'] =  Ferias.objects.filter(pessoa_vacation_id = self.object.pk)
+    def get_context_data(self, **kwargs):
+        ferias = super().get_context_data(**kwargs)
+        ferias['ferias'] =  Ferias.objects.filter(pessoa_vacation_id = self.request.user, start_vacation__gte =(datetime.date.today()))
 
         
-    #     return ferias
+        return ferias
     
 
 

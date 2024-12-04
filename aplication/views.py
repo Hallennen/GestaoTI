@@ -9,9 +9,9 @@ from django.urls import reverse_lazy
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import datetime
 
 
-from  datetime import datetime
 
 # Create your views here.
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -23,7 +23,7 @@ class ViewSolicitacao(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['folgas'] = Folga.objects.filter(status_folga='PENDENTE').order_by('date_created')
+        context['folgas'] = Folga.objects.filter(status_folga='PENDENTE', day__gte=(datetime.date.today())).order_by('day')
         
 
         return context
@@ -134,7 +134,7 @@ class ViewRouter(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['routers'] = Folga.objects.filter(status_folga = 'APROVADO').order_by('day')
+        context['routers'] = Folga.objects.filter(status_folga = 'APROVADO', day__gte=(datetime.date.today())).order_by('day')
         date_of= self.request.GET.get('date_of')
         date_at= self.request.GET.get('date_at')
 

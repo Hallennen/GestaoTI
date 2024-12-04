@@ -18,9 +18,18 @@
         </form>
     </div>
 
-    {% if feriass %}
-        <div class="ferias-painel">
+    <section class="mais_opcoes">
+        <button class="ano" id="ano">
+            <label class='text' for="toggle-1" onclick="incluir_classe()">2024
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25304.png" height="10px"  width="10px"></button>
+            </label>
 
+        <input type="checkbox" id="toggle-1">
+   
+
+        {% if feriass %}
+        <div class="informacoes">
+ 
             <div id="linha-tituloss">
                 
                 <div class="item" id='box'>TÉCNICO:</div>
@@ -50,9 +59,25 @@
             
     
         </div>
-    {% endif %}
+        <!-- {% endif %} -->
+
+    </section>
 
     <script>
+        function incluir_classe(){
+            let check = document.getElementById('toggle-1');
+            if (check.checked){
+                let botton = document.getElementById('ano');
+                botton.classList.remove('ativo')
+            }
+            else{
+                let botton = document.getElementById('ano');
+                botton.classList.add('ativo')
+            }
+        }
+
+
+
         function teste(){
             alert('ola')
         }
