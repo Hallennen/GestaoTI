@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView,recuperacao_senha
-from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter
+from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter, VacationView, DeleteFeriasView
 
 
 urlpatterns = [
@@ -34,12 +34,17 @@ urlpatterns = [
     path('profile/<int:pk>/edit/', UpdateProfileView.as_view(), name='edit-profile'),    
     path('aplication/', AplicationView.as_view(), name='aplication' ),
     path('folgas/<int:pk>/', DetailFolgasView.as_view(), name='rest'),
+    path('ferias/<int:pk>/', DetailFeriasView.as_view(), name='vacation'),
+
 
 
     #gestor
     path('solicitacao/',ViewSolicitacao.as_view(), name='viewsolicitacao'),
     path('solicitacao/<int:pk>', EditSolicitacao.as_view(), name='editsolicitacao'),
     path('visaogeral/', ViewGeral.as_view(), name='viewgeral'),
+    path('ferias/', VacationView.as_view(), name='vacation_list'),
+    path('ferias/<int:pk>/delete/', DeleteFeriasView, name='excluirvacation'),
+    
     
 
     ## VOLANTE / GESTOR
@@ -47,8 +52,6 @@ urlpatterns = [
 
 
 
-    ##pendente
-    path('ferias/<int:pk>/', DetailFeriasView.as_view(), name='vacation'),
 
 
     

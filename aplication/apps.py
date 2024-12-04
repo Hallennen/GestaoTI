@@ -7,5 +7,6 @@ class AplicationConfig(AppConfig):
 
     def ready(self):
         import aplication.signals
+        import aplication.signals_vacation
 
 

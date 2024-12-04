@@ -2,10 +2,24 @@
 
 {% block style %}
     <link rel="stylesheet" href="/static/accounts/myvacation.css">
+
 {% endblock %}
 
 {% block content %}
-<h1>TELA ferias</h1>
+
+
+
+<h1>Férais Agendada</h1>
+
+    <div class="form_cadastro">
+        
+        {{ferias}}
+    </div>
+        
+        <H2 class="negativa-ferias">
+            Sem Ferias agendada
+        </H2>
+
 
 
 {% endblock %}
