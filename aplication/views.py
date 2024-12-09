@@ -1,15 +1,17 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import UpdateView, ListView,DetailView
+from django.views.generic import UpdateView, ListView,DetailView, CreateView
 from .models import Folga, Unit
 from accounts.models import AcontUser
-from aplication.forms import FolgasFormUpdate
+from aplication.models import Ferias
+from aplication.forms import FolgasFormUpdate, FeriasCreateForm
 from django.urls import reverse_lazy
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import datetime
 
 
-from  datetime import datetime
 
 # Create your views here.
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -21,7 +23,7 @@ class ViewSolicitacao(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['folgas'] = Folga.objects.filter(status_folga='PENDENTE').order_by('date_created')
+        context['folgas'] = Folga.objects.filter(status_folga='PENDENTE', day__gte=(datetime.date.today())).order_by('day')
         
 
         return context
@@ -132,7 +134,7 @@ class ViewRouter(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['routers'] = Folga.objects.filter(status_folga = 'APROVADO').order_by('day')
+        context['routers'] = Folga.objects.filter(status_folga = 'APROVADO', day__gte=(datetime.date.today())).order_by('day')
         date_of= self.request.GET.get('date_of')
         date_at= self.request.GET.get('date_at')
 
@@ -142,3 +144,23 @@ class ViewRouter(ListView):
 
         return context
     
+
+
+
+class VacationView(CreateView):
+    model = Ferias
+    template_name = 'listvacation.html'
+    form_class= FeriasCreateForm
+    success_url = '/ferias/'
+    contect_object_name = 'feriass'
+
+    def get_context_data(self, **kwargs):
+        ferias = super().get_context_data(**kwargs)
+        ferias['feriass'] = Ferias.objects.all()
+        
+        return ferias
+    
+def DeleteFeriasView(request,pk):
+    Ferias.objects.filter(id=pk).delete()
+    print('item excluido')
+    return redirect('vacation_list')

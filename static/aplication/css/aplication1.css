@@ -12,12 +12,6 @@
     "info-folga" "calendario";
     text-align: center;
     min-height: 850px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-}
-
-.info-folga {
-    border-radius: 20px 20px 0 0;
-    background-color: rgba(134, 134, 146);
     
 }
 
@@ -149,6 +143,3 @@ a#btn_next, a#btn_prev{
 .ano{
     margin-top: 10px;
 }
-
-
-

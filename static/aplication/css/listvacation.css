@@ -1,0 +1,100 @@
+.options-navbar#vacation_list{
+    background-color: rgb(50, 35, 72);
+    color: white;
+    font-size: bold;
+}
+
+.form-ferias{
+    background-color: rgb(234, 234, 227);
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+/*  ------------ ocultos -----------------*/
+
+#linha-tituloss{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    align-items: center;
+    margin-right: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 5px 0 rgba(1, 0, 0, 0.05), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    background-color: rgba(210, 212, 215, 0.73);
+    min-height: min-content;
+    padding: 3px;
+    font-weight: bold;
+}
+
+#linha-ferias{
+    color: black;
+    margin-right: 5px;
+    min-height: min-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+}
+
+.item{
+    align-content: center;
+
+}
+
+.acao{
+    display: grid;
+    grid-template-columns:1fr 1fr
+}
+
+img#editar{
+    text-align: right;
+
+}
+
+img#excluir{
+    align-items: left;
+    align-content:end;
+}
+
+.ano{
+    width: 100%;
+    margin-top: 8px;
+    font-weight: bolder;
+    border: none;
+    border-bottom: 2px solid rgba(152, 144, 144, 0.801);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    height: 30px;
+
+}
+
+.text:hover{
+    cursor: pointer;
+    color: rgb(15, 89, 216)
+}
+
+input[type='checkbox']{
+    display: none;
+}
+
+.informacoes{
+    align-items: center ;
+    display: none;
+    width: 100%;
+    height: 100px;
+}
+
+input:checked ~ .informacoes {
+    display: block;
+}
+
+
+.ativo{
+    color: rgba(8, 46, 216, 0.801);
+    border-bottom: 2px solid rgba(8, 46, 216, 0.801);
+}

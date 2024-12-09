@@ -2,10 +2,46 @@
 
 {% block style %}
     <link rel="stylesheet" href="/static/accounts/myvacation.css">
+
 {% endblock %}
 
 {% block content %}
-<h1>TELA ferias</h1>
 
+
+
+<h1>Férias Agendada</h1>
+
+{% if ferias %}
+
+    <div id="linha-tituloss">
+                
+        <div class="item" id='box'>TÉCNICO:</div>
+        <div class="item" id='box'>DATA INICIO:</div>
+        <div class="item" id='box'>DATA FIM:</div>
+        <div class="item" id='box'>MES:</div>
+        <div class="item" id='box'>UNIDADE:</div>
+    </div>
+    
+    {% for f in ferias %}
+        <div id="linha-ferias" title=' {{ferias.pk}}' >
+            
+            <div class="linha-ferias item" >{{f.pessoa_vacation}}</div>
+            <div class="linha-ferias item">{{f.start_vacation}}</div>
+            <div class="linha-ferias item">{{f.end_vacation}}</div>
+            <div class="linha-ferias item">{{f.month}}</div>
+            <div class="linha-ferias item">{{f.unit}}</div>
+    
+        </div>
+    
+
+    {% endfor %}
+{% else %}
+    
+        
+    <H2 class="negativa-ferias">
+        Você não possui férias agendada!
+    </H2>
+
+{% endif %}
 
 {% endblock %}

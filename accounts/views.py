@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import AcontUser
-from aplication.models import Folga
+from aplication.models import Folga, Ferias
 from aplication.forms import FormsFolga
 from accounts import forms
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView,ListView
@@ -13,6 +13,7 @@ from accounts.email_template import reset_senha
 import random
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import datetime
 
 
 # Create your views here.
@@ -114,10 +115,19 @@ class UpdateProfileView(UpdateView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class DetailFeriasView(DetailView):
-    model = AcontUser
+class DetailFeriasView(ListView):
+    model = Ferias
     template_name = 'myvacation.html'
 
+
+
+    def get_context_data(self, **kwargs):
+        ferias = super().get_context_data(**kwargs)
+        ferias['ferias'] =  Ferias.objects.filter(pessoa_vacation_id = self.request.user, start_vacation__gte =(datetime.date.today()))
+
+        
+        return ferias
+    
 
 
 

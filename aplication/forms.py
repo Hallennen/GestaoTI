@@ -1,5 +1,5 @@
 from django import forms
-from aplication.models import Folga
+from aplication.models import Folga, Ferias
 from accounts.models import AcontUser
 from aplication.models import Unit
 from django.core.exceptions import ValidationError
@@ -33,17 +33,6 @@ class FormsFolga(forms.Form):
     Dia = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}))
     Motivo = forms.ChoiceField(choices=MOTIVOS_FOLGA)
     Observação = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows":"4", "required":"False","placeholder":"Máximo 50 caracteres"}))
-
-    # def clean_Dia(self):
-    #     date = self.cleaned_data.get('Dia')
-    #     date_exists = Folga.objects.filter(day = date, status_folga ='APROVADO').exists()
-    #     date_exists2 = Folga.objects.filter(day = date, status_folga ='PENDENTE').exists()
-    #     print('data existente',date_exists)
-    #     if date_exists == True or date_exists2 == True:
-    #         print('iguais')
-    #         raise ValidationError('erro')
-    #     else:
-    #         print('dia agendado')
 
 
     def clean_Dia(self):
@@ -108,3 +97,15 @@ class FolgasFormUpdate(forms.ModelForm):
             self.cleaned_data['date_updated'] = date_uptaded
             
         return self.cleaned_data['date_updated']
+    
+
+
+
+class FeriasCreateForm(forms.ModelForm):
+    start_vacation = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}),label='Data Início:')
+    end_vacation = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}),label='Data Fim:' )
+    
+    class Meta: 
+        model = Ferias
+        fields = ('pessoa_vacation','start_vacation','end_vacation','unit')
+    
