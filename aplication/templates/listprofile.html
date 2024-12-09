@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="/static/aplication/css/listprofile.css">
+{% endblock %}
+
+{% block content %}
+    {% if user.cargo.id == 1  %}
+        {% if profile %}
+        <h2 id='titulo'>Perfis</h2>
+        <a id="button" href="{% url 'createprofile'  %}"><button id='create_user' >+ Usúario </button></a>
+
+
+            {% for i in profile %}
+
+                <a href="{% url 'edit-profile' i.pk %} "><div id="linha-profile" title=' {{ferias.pk}}'>
+                    {% if i.photo %}
+                        <div class="linha-profile item" ><img class="photo_profile" src="/media/{{i.photo}}" width="30px" height="30px"></div>
+                    {% else %}
+                        <div class="linha-profile item" ><img class="photo_profile" src="/media/image/padrao.png" width="30px" height="30px"></div>
+                    {% endif %}
+                    <div class="linha-profile item" >{{i.get_full_name}}</div>
+                    <div class="linha-profile item" >{{i.user}}</div>
+                    <div class="linha-profile item" >{{i.unit}}</div>
+                    <div class="linha-profile item" >Saldo: {{i.saldo}}</div>
+
+                </div></a>
+
+            {% endfor  %}
+
+        {% endif %}
+    {% else %}
+        <h1>Voce não tem permissão para acessar essa página</h1>
+    {% endif %}
+{% endblock %}

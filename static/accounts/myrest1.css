@@ -80,6 +80,10 @@ button#btn_solicitar_folga:hover{
     transition: 500ms;
 }
 
+#saldo-folgas{
+    text-align: center;
+}
+
 
 /* blocos folgas SE tiver  */
 

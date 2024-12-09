@@ -7,7 +7,7 @@
 {% block content %}
 <!-- <h1>Minhas Folgas</h1> -->
 <div class="notificacao">
-    <p id='informativo'>**Número com base nas suas solicitações** </p>
+    <p id='informativo'>**Número com base nas suas solicitações**  </p>
     {% if notificacao %}
         <span class="notificacao">{{notificacao}}</span>
     {% endif %}
@@ -31,6 +31,7 @@
                 <h1 id="numero">0</h1>
             {% endif %}
         </div>
+
         <div class="item-dados" id='dados-recusado'>
             <h2>Folgas Recusadas</h2>
             {% if recusadas > 0 %}
@@ -39,12 +40,17 @@
                 <h1 id="numero">0</h1>
             {% endif %}
         </div>
-        
     </div>
 
-    <div class="button-folga">
-        <button class="btn open" id="btn_solicitar_folga" >+ Incluir Solicitação</but>
+    <div>
+        <h2 id="saldo-folgas">Saldo de Folgas: {{user.saldo}}</h2>
+    </div>
+    
+    {% if user.saldo > 0 %}
+        <div class="button-folga">
+            <button class="btn open" id="btn_solicitar_folga" >+ Incluir Solicitação</button>
         </div>   
+    {% endif %}
 
     <dialog class="modal">
         <h2>Solicitação de Folga</h2>
@@ -89,6 +95,7 @@
                     </div>
             
                 {% endfor %}
+                <span>Últimas 10 solicitações</span>
             {% endif %}
 
 
@@ -99,7 +106,7 @@
         
 
     </div>
-    <span>Últimas 10 solicitações</span>
+
     <script>
         const modal = document.querySelector(".modal");
         const openModalBtn = document.querySelector(".open");

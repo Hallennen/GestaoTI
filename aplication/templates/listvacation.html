@@ -5,84 +5,64 @@
 {% endblock %}
 
 {% block content %}
-    <h2>
-        Ferias a acrescentar!
-    </h2>
-    <div class='form-ferias'>
+    {% if user.cargo.id == 1 %}
+        <h2 id='titulo'>
+            Férias
+        </h2>
+        <div class='form-ferias'>
 
-        <form method="POST">
-            {% csrf_token %}
-            
-            {{form}}
-            <button type="submit">Cadastrar</button>
-        </form>
-    </div>
-
-    <section class="mais_opcoes">
-        <button class="ano" id="ano">
-            <label class='text' for="toggle-1" onclick="incluir_classe()">2024
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25304.png" height="10px"  width="10px"></button>
-            </label>
-
-        <input type="checkbox" id="toggle-1">
-   
-
-        {% if feriass %}
-        <div class="informacoes">
- 
-            <div id="linha-tituloss">
+            <form method="POST">
+                {% csrf_token %}
                 
-                <div class="item" id='box'>TÉCNICO:</div>
-                <div class="item" id='box'>DATA INICIO:</div>
-                <div class="item" id='box'>DATA FIM:</div>
-                <div class="item" id='box'>MES:</div>
-                <div class="item" id='box'>UNIDADE:</div>
-                <div class="item" id='box'>AÇÃO:</div>
-            </div>
-            
-            {% for ferias in feriass %}
-                <div id="linha-ferias" title=' {{ferias.pk}}' >
-                    
-                    <div class="linha-ferias item" >{{ferias.pessoa_vacation}}</div>
-                    <div class="linha-ferias item">{{ferias.start_vacation}}</div>
-                    <div class="linha-ferias item">{{ferias.end_vacation}}</div>
-                    <div class="linha-ferias item">{{ferias.month}}</div>
-                    <div class="linha-ferias item">{{ferias.unit}}</div>
-                    <div class="linha-ferias item acao">
-                        <a href="" class="icon-editar" onclick='teste()'><img id='editar' src="/media/image/editar.png" alt="" width="20px" height="20px"></a>
-                        <a href="{% url 'excluirvacation' ferias.id %}"  title=' Excluir Registro' class="icon-excluir"><img id='excluir' src="/media/image/excluir.png" alt="" width="20px" height="20px"></a>
-                    </div>
-            
-                </div>
-            
-            {% endfor %}
-            
-    
+                {{form}}
+                <button type="submit">Cadastrar</button>
+            </form>
         </div>
-        <!-- {% endif %} -->
 
-    </section>
+        {% for ano, ferias_ano in ferias_ano.items %}
+            <section class="mais_opcoes">
+                <button class="{{ano}}" id="ano">
+                    <label class='text' for="{{ano}}" >{{ano}}
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25304.png" height="10px"  width="10px"></button>
+                    </label>
 
-    <script>
-        function incluir_classe(){
-            let check = document.getElementById('toggle-1');
-            if (check.checked){
-                let botton = document.getElementById('ano');
-                botton.classList.remove('ativo')
-            }
-            else{
-                let botton = document.getElementById('ano');
-                botton.classList.add('ativo')
-            }
-        }
+                <input type="checkbox" id="{{ano}}">
 
+                    
+                <div class="informacoes">
+                    
+                    <div id="linha-tituloss">
+                        
+                        <div class="item" id='box'>TÉCNICO:</div>
+                        <div class="item" id='box'>DATA INICIO:</div>
+                        <div class="item" id='box'>DATA FIM:</div>
+                        <div class="item" id='box'>MES:</div>
+                        <div class="item" id='box'>UNIDADE:</div>
+                        <div class="item" id='box'>AÇÃO:</div>
+                    </div>
+                {% for ferias in ferias_ano %}
+                        <div id="linha-ferias" title=' {{ferias.pk}}' >
+                            
+                            <div class="linha-ferias item" >{{ferias.pessoa_vacation}}</div>
+                            <div class="linha-ferias item">{{ferias.start_vacation}}</div>
+                            <div class="linha-ferias item">{{ferias.end_vacation}}</div>
+                            <div class="linha-ferias item">{{ferias.year}}</div>
+                            <div class="linha-ferias item">{{ferias.unit}}</div>
+                            <div class="linha-ferias item ">
+                                <a href="{% url 'excluirvacation' ferias.pk %}"  title=' Excluir Registro' class="icon-excluir"><img id='excluir' src="/media/image/excluir.png" alt="" width="20px" height="20px"></a>
+                            </div>
+                    
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+                                
+                    
 
-
-        function teste(){
-            alert('ola')
-        }
-    </script>
-
-
+            </section>
+        {% endfor %}
+    {% else %}
+        <h1>Voce não tem permissão para acessar essa página</h1>
+    {% endif %}
 
 {% endblock %}

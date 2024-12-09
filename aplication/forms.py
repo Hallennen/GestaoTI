@@ -64,6 +64,8 @@ class FormsFolga(forms.Form):
             raise ValidationError(    [
                 (f"Só é possivel fazer solicitação em dias da semana (segunda - sexta)."),
             ])
+    
+
         
 
  

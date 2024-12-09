@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView,recuperacao_senha
-from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter, VacationView, DeleteFeriasView
+from accounts.views import login_view, AplicationView, logout_view, DetailProfileView, DetailFeriasView, DetailFolgasView,CreateView, UpdateProfileView,recuperacao_senha, CreateProfile
+from aplication.views import ViewSolicitacao, EditSolicitacao, ViewGeral, ViewRouter, VacationView, DeleteFeriasView, ListProfile
 
 
 urlpatterns = [
@@ -39,6 +39,8 @@ urlpatterns = [
 
 
     #gestor
+    path('listprofile/',ListProfile.as_view(), name='listprofile'),
+    path('createprofile/',CreateProfile.as_view(), name='createprofile'),
     path('solicitacao/',ViewSolicitacao.as_view(), name='viewsolicitacao'),
     path('solicitacao/<int:pk>', EditSolicitacao.as_view(), name='editsolicitacao'),
     path('visaogeral/', ViewGeral.as_view(), name='viewgeral'),

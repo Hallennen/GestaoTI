@@ -80,6 +80,14 @@ class AplicationView(TemplateView):
         return ({'context':context, 'contadores':extra_context})
 
 
+class CreateProfile(CreateView):
+    model = AcontUser
+    template_name = 'createprofile.html'
+    form_class = forms.CreateUser
+    success_url = '/listprofile/'
+
+
+
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailProfileView(DetailView):
     model = AcontUser

@@ -9,4 +9,4 @@ class folga(admin.ModelAdmin):
 
 @admin.register(Ferias)
 class Feria(admin.ModelAdmin):
-    list_display = ['pessoa_vacation', 'start_vacation','end_vacation' ]
+    list_display = ['pessoa_vacation', 'start_vacation','end_vacation', 'year' ]

@@ -34,6 +34,7 @@ class Ferias(models.Model):
     start_vacation = models.DateField(unique = True, verbose_name='Data inicio:')
     end_vacation = models.DateField(verbose_name="Data Fim")
     month = models.CharField(default='',blank= True)
+    year = models.CharField(default= '', blank=True)
     unit = models.ForeignKey(Unit, on_delete= models.CASCADE, related_name='ferias_unidade',verbose_name='Unidade')
 
     def __str__(self):

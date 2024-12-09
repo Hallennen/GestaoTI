@@ -7,35 +7,40 @@
 
 
 {% block content %}
-    <h1 id='titulo'>Solicitações Pendentes</h1>
 
-    <div id="linha-tituloss">
+    {% if user.cargo.id == 1 %}
+        <h1 id='titulo'>Solicitações Pendentes</h1>
 
-        <div class="linha-folga" id='box'>DATA DA FOLGA:</div>
-        <div class="item" id='box'>MOTIVO:</div>
-        <div class="item" id='box'>CRIAÇÃO:</div>
-        <div class="item" id='box'>STATUS:</div>
-        <div class="item" id='box'>TÉCNICO</div>
-        <div class="item" id='box'>UNIDADE</div>
-    </div>
+        <div id="linha-tituloss">
 
-    {% if folgas %}
-        {% for folga in folgas%}
-            <a href="{{folga.id}}"><div id="linha-folga" title="{{folga.id}}" alt="id: {{folga.id}} OBS:{{folga.observacao}}">
+            <div class="linha-folga" id='box'>DATA DA FOLGA:</div>
+            <div class="item" id='box'>MOTIVO:</div>
+            <div class="item" id='box'>CRIAÇÃO:</div>
+            <div class="item" id='box'>STATUS:</div>
+            <div class="item" id='box'>TÉCNICO</div>
+            <div class="item" id='box'>UNIDADE</div>
+        </div>
 
-                <div class="linha-folga item">{{folga.day}}</div>
-                <div class="linha-folga item">{{folga.motivo}}</div>
-                <div class="linha-folga item">{{folga.date_created}}</div>
-                <div class="linha-folga item">{{folga.status_folga}}</div>
-                <div class="linha-folga item">{{folga.folga_pessoa.get_full_name}}</div>
-                <div class="linha-folga item">{{folga.unit}}</div>
-                
-            </div></a>
-        {% endfor%}
-    
-    
-    
+        {% if folgas %}
+            {% for folga in folgas%}
+                <a href="{{folga.id}}"><div id="linha-folga" title="{{folga.id}}" alt="id: {{folga.id}} OBS:{{folga.observacao}}">
 
+                    <div class="linha-folga item">{{folga.day}}</div>
+                    <div class="linha-folga item">{{folga.motivo}}</div>
+                    <div class="linha-folga item">{{folga.date_created}}</div>
+                    <div class="linha-folga item">{{folga.status_folga}}</div>
+                    <div class="linha-folga item">{{folga.folga_pessoa.get_full_name}}</div>
+                    <div class="linha-folga item">{{folga.unit}}</div>
+                    
+                </div></a>
+            {% endfor%}
+        
+        
+        
+
+        {% endif %}
+    {% else %}
+        <h1>Voce não tem permissão para acessar essa página</h1>
     {% endif %}
 
 {% endblock %}

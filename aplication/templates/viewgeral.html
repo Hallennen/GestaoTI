@@ -6,171 +6,174 @@
 {% endblock %}
 
 {% block content %} 
+    {% if user.cargo.id == 1 %}
 
-    <h1>
-        Visão Geral 
-    </h1>
+        <h1>
+            Visão Geral 
+        </h1>
 
-    <div class="grids">
-        <div class="filtros-busca">
-            <h3>Filtros:</h3>
-            
-            <form  id="form-name" method="GET" action="{% url 'viewgeral' %}">
-                <select name="search-name" id="" >
-                    <option value="">Buscar por NOME</option>
-                    {% for tecnico in tecnicos %}
-                    <option value="{{tecnico.id}}" name="search-name" placeholder="Unidade">{{tecnico.first_name}} {{tecnico.last_name}}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
-            </form>
-
-            <form method="GET" action="{% url 'viewgeral' %}">  
-                <select name="search" id="" >
-                    <option value="" name="search">Buscar por UNIDADE</option>
-                    {% for unidade in unidades %}
-                    <option value="{{unidade.id}}" name="search" placeholder="Unidade">{{unidade}}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
-            </form>
-            <form method="GET" action="{% url 'viewgeral' %}">  
-                <select name="search_status" id="" >
-                    <option value="" name="search">Buscar por STATUS</option>
-                    <option value="PENDENTE" name="search_status" >PENDENTE</option>
-                    <option value="APROVADO" name="search_status" >APROVADO</option>
-                    <option value="RECUSADO" name="search_status" >RECUSADO</option>
-
-                </select>
-                <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
-            </form>
-            <form method="GET" action="{% url 'viewgeral' %}">  
-                <input type="date" name="search_date" id="">
-                <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
-            </form>
-        </div>
-
-        <div class="div-export">
-
-            <button class="open">Relatório</button><span id='erro'>{{alerta}}</span><span id='erro_negativo'>{{alerta_negativo}}</span>
-            <dialog class="modal">
-                <h2>Relatorio</h2>
-                <table>
-
-                    <form class="relatorio" method="POST">
-                        {% csrf_token %}
-                        
-                        
-                        <label for="">Periodo:</label><br>
-                        <label for="">De: </label>
-                        <input type="date" name="date_for" id="form" required>
-                        <label for=""> Até: </label>
-                        <input type="date" name="date_at" id="form" required><br>
-        
-        
-                        <label for="">Técnico:</label><br>
-                        <select name="tec" id="form">
-                            <option value="">Buscar por NOME</option>
-                            {% for tecnico in tecnicos %}
-                            <option value="{{tecnico.id}}" name="tecnico" placeholder="Unidade">{{tecnico.get_full_name}}</option>
-                            {% endfor %}
-                        </select><br>
-                        
-                        
-                        <label for="">Unidade:</label><br>
-                        <select name="unit" id="form">
-                            <option value="" name="search">Buscar por UNIDADE</option>
-                            {% for unidade in unidades %}
-                            <option value="{{unidade.id}}" name="unidade" placeholder="Unidade">{{unidade}}</option>
-                            {% endfor %}
-        
-                        </select><br>
-
-                        <input id='enviar_form' type="submit" value="Gerar Relatorio"></button>
-                    </form>
-                            
-                </table>
-                <button type="button" class="btn close">X</button>
-            </dialog>
-            
-        </div>
-
-        <div class="folgas">
-
-            {% if folgas %}
-            <div id="linha-tituloss">
+        <div class="grids">
+            <div class="filtros-busca">
+                <h3>Filtros:</h3>
                 
-                <div class="linha-folga" id='box'>DATA DA FOLGA:</div>
-                <div class="item" id='box'>MOTIVO:</div>
-                <div class="item" id='box'>CRIAÇÃO:</div>
-                <div class="item" id='box'>STATUS:</div>
-                <div class="item" id='box'>TÉCNICO</div>
-                <div class="item" id='box'>UNIDADE</div>
+                <form  id="form-name" method="GET" action="{% url 'viewgeral' %}">
+                    <select name="search-name" id="" >
+                        <option value="">Buscar por NOME</option>
+                        {% for tecnico in tecnicos %}
+                        <option value="{{tecnico.id}}" name="search-name" placeholder="Unidade">{{tecnico.first_name}} {{tecnico.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
+                </form>
+
+                <form method="GET" action="{% url 'viewgeral' %}">  
+                    <select name="search" id="" >
+                        <option value="" name="search">Buscar por UNIDADE</option>
+                        {% for unidade in unidades %}
+                        <option value="{{unidade.id}}" name="search" placeholder="Unidade">{{unidade}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
+                </form>
+                <form method="GET" action="{% url 'viewgeral' %}">  
+                    <select name="search_status" id="" >
+                        <option value="" name="search">Buscar por STATUS</option>
+                        <option value="PENDENTE" name="search_status" >PENDENTE</option>
+                        <option value="APROVADO" name="search_status" >APROVADO</option>
+                        <option value="RECUSADO" name="search_status" >RECUSADO</option>
+
+                    </select>
+                    <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
+                </form>
+                <form method="GET" action="{% url 'viewgeral' %}">  
+                    <input type="date" name="search_date" id="">
+                    <button type="submit"><img src="/media/image/busca.png" width=14px height=13px></button>
+                </form>
             </div>
 
-            {% for folga in folgas %}
-            <a href="{% url 'editsolicitacao' folga.id %}"><div id="linha-folga" title="{{folga.id}}" alt="id: {{folga.id}} OBS:{{folga.observacao}}">
+            <div class="div-export">
+
+                <button class="open">Relatório</button><span id='erro'>{{alerta}}</span><span id='erro_negativo'>{{alerta_negativo}}</span>
+                <dialog class="modal">
+                    <h2>Relatorio</h2>
+                    <table>
+
+                        <form class="relatorio" method="POST">
+                            {% csrf_token %}
+                            
+                            
+                            <label for="">Periodo:</label><br>
+                            <label for="">De: </label>
+                            <input type="date" name="date_for" id="form" required>
+                            <label for=""> Até: </label>
+                            <input type="date" name="date_at" id="form" required><br>
+            
+            
+                            <label for="">Técnico:</label><br>
+                            <select name="tec" id="form">
+                                <option value="">Buscar por NOME</option>
+                                {% for tecnico in tecnicos %}
+                                <option value="{{tecnico.id}}" name="tecnico" placeholder="Unidade">{{tecnico.get_full_name}}</option>
+                                {% endfor %}
+                            </select><br>
+                            
+                            
+                            <label for="">Unidade:</label><br>
+                            <select name="unit" id="form">
+                                <option value="" name="search">Buscar por UNIDADE</option>
+                                {% for unidade in unidades %}
+                                <option value="{{unidade.id}}" name="unidade" placeholder="Unidade">{{unidade}}</option>
+                                {% endfor %}
+            
+                            </select><br>
+
+                            <input id='enviar_form' type="submit" value="Gerar Relatorio"></button>
+                        </form>
+                                
+                    </table>
+                    <button type="button" class="btn close">X</button>
+                </dialog>
                 
-                <div class="linha-folga item">{{folga.day}}</div>
-                <div class="linha-folga item">{{folga.motivo}}</div>
-                <div class="linha-folga item">{{folga.date_created}}</div>
-                <div class="linha-folga item" id='linha_status_folga'>{{folga.status_folga}}</div>
-                <div class="linha-folga item">{{folga.folga_pessoa.get_full_name}}</div>
-                <div class="linha-folga item">{{folga.unit}}</div>
-                <!-- {{folgas}} -->
-            </div></a>
-            {% endfor %}
-            
-            {% else %}
-            
-            <h3>Sem Resultados para o filtro aplicado! </h3>    
-            {% endif %}
+            </div>
+
+            <div class="folgas">
+
+                {% if folgas %}
+                <div id="linha-tituloss">
+                    
+                    <div class="linha-folga" id='box'>DATA DA FOLGA:</div>
+                    <div class="item" id='box'>MOTIVO:</div>
+                    <div class="item" id='box'>CRIAÇÃO:</div>
+                    <div class="item" id='box'>STATUS:</div>
+                    <div class="item" id='box'>TÉCNICO</div>
+                    <div class="item" id='box'>UNIDADE</div>
+                </div>
+
+                {% for folga in folgas %}
+                <a href="{% url 'editsolicitacao' folga.id %}"><div id="linha-folga" title="{{folga.id}}" alt="id: {{folga.id}} OBS:{{folga.observacao}}">
+                    
+                    <div class="linha-folga item">{{folga.day}}</div>
+                    <div class="linha-folga item">{{folga.motivo}}</div>
+                    <div class="linha-folga item">{{folga.date_created}}</div>
+                    <div class="linha-folga item" id='linha_status_folga'>{{folga.status_folga}}</div>
+                    <div class="linha-folga item">{{folga.folga_pessoa.get_full_name}}</div>
+                    <div class="linha-folga item">{{folga.unit}}</div>
+                    <!-- {{folgas}} -->
+                </div></a>
+                {% endfor %}
+                
+                {% else %}
+                
+                <h3>Sem Resultados para o filtro aplicado! </h3>    
+                {% endif %}
+            </div>
+
+    
+        </div>
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1"><<</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+                {% endif %}
+            </span>
         </div>
 
-   
-    </div>
-    
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1"><<</a>
-                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-            {% endif %}
-
-            <span class="current">
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
-            {% endif %}
-        </span>
-    </div>
-
-    <script>
-        const modal = document.querySelector(".modal");
-        const openModalBtn = document.querySelector(".open");
-        const closeModalBtn = document.querySelector(".close");
-        
-        openModalBtn.addEventListener("click", () => modal.showModal());
-        
-        closeModalBtn.addEventListener("click", () => modal.close());
-
-        function validar(){
-
-            var tec = document.querySelector('.tec')
-            var unit = document.querySelector('.unit')
-            console.log(unit)
+        <script>
+            const modal = document.querySelector(".modal");
+            const openModalBtn = document.querySelector(".open");
+            const closeModalBtn = document.querySelector(".close");
             
-            if(tec == '' & unit == ''){
-                alert('Preenche o campo Tecnico ou Unidade.')
+            openModalBtn.addEventListener("click", () => modal.showModal());
+            
+            closeModalBtn.addEventListener("click", () => modal.close());
+
+            function validar(){
+
+                var tec = document.querySelector('.tec')
+                var unit = document.querySelector('.unit')
+                console.log(unit)
+                
+                if(tec == '' & unit == ''){
+                    alert('Preenche o campo Tecnico ou Unidade.')
+                }
             }
-        }
 
 
-    </script>
+        </script>
 
-    <script type="text/javascript" src="/static/aplication/scripts/solicitacoes.js"></script>
-
+        <script type="text/javascript" src="/static/aplication/scripts/solicitacoes.js"></script>
+    {% else %}
+        <h1>Voce não tem permissão para acessar essa página</h1>
+    {% endif %}
 {% endblock %}

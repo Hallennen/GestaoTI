@@ -67,10 +67,19 @@
                         <label id="form">Ramal:</label><br>
                         {{form.ramal}}<br>
                     </div>
-                    <div class="item item-grande">
-                        <label id="form">Path_:</label><br>
-                        {{form.path}}<br>
-                    </div>
+
+                    {% if user.cargo.position_name == 'Gestor T.I' %}
+                        <div class="item item-grande">
+                            <label id="form">Path_:</label><br>
+                            {{form.path}}<br>
+                        </div>
+                    
+                        <div class="item item-grande">
+                            <label id="form">Saldo de folgas:</label><br>
+                            {{form.saldo}}
+                        </div>
+                                        
+                    {% endif %}
 
                   
 

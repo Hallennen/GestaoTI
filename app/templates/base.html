@@ -38,10 +38,10 @@
                     {% if user.cargo_id == 3 or user.cargo_id == 1%}
                     <a class="options-navbar" id="router" href="{% url 'router' %} "><li id="router" class="options-navbar">Roteiro</li></a>
                     {% endif %}
-                    
                     {% if user.cargo_id == 1 %}
                     <br><br><h1>{{user.cargo}}</h1>
-                    <a class="options-navbar" id="solicitacao" href="{% url 'viewsolicitacao' %} "><li  id="solicitacao" class="options-navbar">Solicitações</li></a>
+                    <a class="options-navbar" id="listprofile" href="{% url 'listprofile' %} "><li id="listprofile" class="options-navbar">Funcionários</li></a>
+                    <a class="options-navbar" id="solicitacao" href="{% url 'viewsolicitacao' %} "><li  id="solicitacao" class="options-navbar">Solicitações Pendentes</li></a>
                     <a class="options-navbar" id="viewgeral" href="{% url 'viewgeral' %} "><li  id="viewgeral" class="options-navbar">Visão Geral</li></a>
                     <a class="options-navbar" id="vacation_list" href="{% url 'vacation_list' %} "><li id="vacation_list" class="options-navbar">Férias</li></a>
                     {% endif %}

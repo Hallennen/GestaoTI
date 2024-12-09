@@ -1,4 +1,3 @@
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, ListView,DetailView, CreateView
 from .models import Folga, Unit
@@ -14,6 +13,21 @@ import datetime
 
 
 # Create your views here.
+class ListProfile(ListView):
+    model = AcontUser
+    template_name = 'listprofile.html'
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        profile = super().get_context_data(**kwargs) 
+        profile['profile'] = AcontUser.objects.all().order_by('first_name')
+
+        return profile
+
+
+
+
+
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class ViewSolicitacao(ListView):
     model = Folga
@@ -156,9 +170,17 @@ class VacationView(CreateView):
 
     def get_context_data(self, **kwargs):
         ferias = super().get_context_data(**kwargs)
-        ferias['feriass'] = Ferias.objects.all()
-        
-        return ferias
+        # anos = Ferias.objects.all().values('year').distinct().values('year')
+        # ferias['feriass'] = Ferias.objects.all() 
+
+        ferias = Ferias.objects.all().order_by('start_vacation__year')
+        ferias_por_ano= {}
+        for f in ferias:
+            ano = f.start_vacation.year
+            ferias_por_ano.setdefault(ano, []).append(f)
+
+        print(ferias_por_ano)
+        return {'ferias_ano':ferias_por_ano, 'form':FeriasCreateForm}
     
 def DeleteFeriasView(request,pk):
     Ferias.objects.filter(id=pk).delete()

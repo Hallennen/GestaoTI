@@ -9,10 +9,10 @@ from aplication.utilites import correcao_url
 def pre_save(sender,instance, **kwargs):
     num = AcontUser.objects.filter(pk=instance.pk).count()
 
-    if num > 0 and AcontUser.objects.filter(pk=instance.pk).exists() == False: 
+    if num == 0 and AcontUser.objects.filter(pk=instance.pk).exists() == False: 
         instance.password = make_password(instance.password)
         print('salvo no banco')
-            
+        print('criptografo')
 
         return instance.password   
 

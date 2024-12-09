@@ -5,6 +5,9 @@ from django.dispatch import receiver
 
 @receiver(pre_save,sender=Ferias)
 def pre_save(sender,instance,**kargs):
-    data = instance.start_vacation
-    data = data.strftime("%B")
-    instance.month = data
+    data_ferias = instance.start_vacation
+    mes = data_ferias.strftime("%B")
+    ano = data_ferias.strftime("%Y")
+    instance.month = mes
+    instance.year = ano
+
