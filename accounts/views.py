@@ -73,13 +73,11 @@ class AplicationView(TemplateView):
 
 
     def get_context_data(self, **kwargs):
-        context = Folga.objects.filter(status_folga = 'APROVADO',folga_pessoa_id=self.request.user)
+        context = Folga.objects.filter(status_folga = 'APROVADO')
         extra_context = (Folga.objects.filter(status_folga = 'APROVADO', folga_pessoa_id=self.request.user).count())
-        extra = [extra_context]
-        context = context
         return ({'context':context, 'contadores':extra_context})
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CreateProfile(CreateView):
     model = AcontUser
     template_name = 'createprofile.html'

@@ -24,15 +24,14 @@
             </header>
             <table>
                 {% if context %}
-                <span id="teste" style="display: none">{{context}}</span>
                     {% for a in context %}
                         <div class="dados">
-                            <span class='event'id="dados" style="display: none">{{a}}</span> 
+                            <span class='event'id="dados" style="display: none" >{{a}}</span> 
                         </div>
-                        {% endfor %}
+                    {% endfor %}
                     
 
-                    {% endif %}
+                {% endif %}
                     <thead>
                         <tr>
                         <td>Dom</td>

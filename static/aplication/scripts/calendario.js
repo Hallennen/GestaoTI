@@ -7,19 +7,11 @@ document.addEventListener('DOMContentLoaded',function() {
 
         let firstDayOfWeek = new Date(ano,mes,1).getDay()-1;
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
-        var teste_dados = document.getElementById('dados');
-        console.log(teste_dados)
-    //     if (teste_dados){
-
-            
-    //         var teste = document.getElementById('dados').textContent.split(',')[1];
-    //         var dia_informado = (parseInt(teste.split('-'))[2]);
-    //         var mes_informado = (parseInt(teste.split('-'))[1]);
-    //         var ano_informado = (ParseInt(teste.split('-'))[0]);
-    //     }
+        var data = document.querySelectorAll('#dados');    
+ 
 
 
-    //    var datas_folga = document.querySelectorAll('#dados');
+       var datas_folga = document.querySelectorAll('#dados');
 
 
         for (var i = -firstDayOfWeek ,index=0; i < (42-firstDayOfWeek); i++ , index++){
@@ -51,31 +43,30 @@ document.addEventListener('DOMContentLoaded',function() {
                 dayTable.classList.add('proximo-mes')
             }
             
-            // if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
-            //     alert('sim');
-            //     console.log('true');
-            //     dayTable.classList.add('event')
-            // }
+
+            if (data){
+                for (dat of data){
+                    console.log(dat.textContent)
+
+                    var teste = dat.textContent.split('-')
+                    
+                    
+                    var dia_informado = teste[2];
+                    var mes_informado = teste[1];
+                    var ano_informado = teste[0];
+                    
+                    
+                    if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
+                        dayTable.classList.add('event')
+                    }
+                }
+
+                
+            }
+
 
         }
 
-        
-        // if(datas_folga.length > 0){
-            
-        //     for (i = 0 ; i <=datas_folga.length; i++){
-        //         folga = document.querySelectorAll('#dados')[i].textContent;
-        //         console.log(folga)
-        //         var dia_informado = (folga.split('-'))[2];
-        //         var mes_informado = (folga.split('-'))[1];
-        //         var ano_informado = (folga.split('-'))[0];
-        //         data.getFullYear() == ano_informado && data.getMonth()+1 == mes_informado && data.getDate() == dia_informado
-
-        //         console.log('true');
-        //         dayTable.classList.add('event')
-        //     }
-        // }
-
-      
 
     }
 
