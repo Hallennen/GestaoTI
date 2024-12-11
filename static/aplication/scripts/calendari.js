@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded',function() {
         let firstDayOfWeek = new Date(ano,mes,1).getDay()-1;
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
         var data = document.querySelectorAll('#dados');    
+        var minha_folga = document.querySelectorAll('#minha_folga');    
  
 
 
-       var datas_folga = document.querySelectorAll('#dados');
 
 
         for (var i = -firstDayOfWeek ,index=0; i < (42-firstDayOfWeek); i++ , index++){
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded',function() {
             dayTable.classList.remove('mes-anterior');
             dayTable.classList.remove('proximo-mes');
             dayTable.classList.remove('event');
+            dayTable.classList.remove('folga');
+            
 
             dayTable.innerHTML = dt.getDate();
             
@@ -58,6 +60,25 @@ document.addEventListener('DOMContentLoaded',function() {
                     
                     if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
                         dayTable.classList.add('event')
+                    }
+                }
+
+                
+            }
+            if (minha_folga){
+                for (folga of minha_folga){
+                    console.log(folga.textContent)
+
+                    var teste = folga.textContent.split('-')
+                    
+                    
+                    var dia_informado = teste[2];
+                    var mes_informado = teste[1];
+                    var ano_informado = teste[0];
+                    
+                    
+                    if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
+                        dayTable.classList.add('folga')
                     }
                 }
 

@@ -29,7 +29,9 @@
                             <span class='event'id="dados" style="display: none" >{{a}}</span> 
                         </div>
                     {% endfor %}
-                    
+                    {% for folga in folgas%}
+                        <span class="minha_folga" id="minha_folga" style="display: none;">{{folga}}</span>
+                    {% endfor %}
 
                 {% endif %}
                     <thead>
@@ -105,5 +107,5 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/static/aplication/scripts/calendario.js"></script>
+    <script type="text/javascript" src="/static/aplication/scripts/calendari.js"></script>
 {% endblock %}
