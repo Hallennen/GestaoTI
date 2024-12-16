@@ -33,7 +33,7 @@ class Ferias(models.Model):
     pessoa_vacation = models.ForeignKey(AcontUser,on_delete= models.CASCADE, related_name = 'ferias_pessoa', verbose_name='Colaborador')
     start_vacation = models.DateField(unique = True, verbose_name='Data inicio:')
     end_vacation = models.DateField(verbose_name="Data Fim")
-    month = models.CharField(default='',blank= True)
+    month = models.CharField(default='',blank= True, max_length=250)
     unit = models.ForeignKey(Unit, on_delete= models.CASCADE, related_name='ferias_unidade',verbose_name='Unidade')
 
     def __str__(self):

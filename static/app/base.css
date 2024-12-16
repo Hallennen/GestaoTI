@@ -89,8 +89,9 @@ ul{
 
 .box-lateral{
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    height: 27vw;
+    height: auto;
     border-radius: 15px;
+    width: 12vw;
 }
 
 .box-center{
