@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
 .header-top{
@@ -88,7 +89,7 @@ ul{
 }
 
 .box-lateral{
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.555), 0 2px 10px 0 rgba(0, 0, 0, 0.514);
     height: auto;
     border-radius: 15px;
     width: 12vw;
@@ -107,7 +108,10 @@ ul{
 }
 
 .conteudo-principal{
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.452), 0 2px 10px 0 rgba(0, 0, 0, 0.452);
+    padding: 10px;
+    border: 10px #575a5d;
+    border-radius: 20px;
 }
 
 footer{
