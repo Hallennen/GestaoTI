@@ -41,6 +41,7 @@ img#foto{
 	margin-left:37.5%;
 	justify-content: center;
     border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 38%), 0 2px 10px 0 rgb(0 0 0 / 47%);
 }
 
 
@@ -62,11 +63,12 @@ img#foto{
     padding-top: 2px;
     padding-bottom: 10px;
     padding-left: 5px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 38%), 0 2px 10px 0 rgb(0 0 0 / 47%);
 
 }
 label{
     font-size: large;
+    font-weight: 600;
 }
 
 input{
