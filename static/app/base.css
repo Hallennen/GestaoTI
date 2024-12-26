@@ -135,4 +135,63 @@ p#footer{
 
 /*  RESPONSIVIDADE */
 
+/* TABLETS*/
+
+@media (max-width: 768px) {
+  .box-lateral {
+
+  }
+
+  .conteiner {
+
+  }
+
+  /*VISAO GERAL */
+
+  .conteudo-principal {
+    width: 74vw;
+  }
+
+  .filtros-busca {    
+    height: 18vw;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  /*---------------------------*/
+
+  .box-center {
+    display: inline-grid;
+    width: 86vw;
+  }
+
+  .ld_direito {
+    height: 0;
+    width: 0;
+  }
+
+  .ld_esquerdo {
+    height: 0;
+    width: 0;
+  }
+}
+
+/* FERIAS */
+
+form {
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+button {
+    margin: auto;
+}
+
+/*CELULAR*/
+
+@media (max-width: 480px) {
+
+
+}
+
  
