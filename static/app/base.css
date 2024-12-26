@@ -191,6 +191,49 @@ button {
 
 @media (max-width: 480px) {
 
+    /*PERFIL*/
+
+.conteiner {
+    display: flex;
+}
+
+.box-lateral{
+    display: contents;
+}
+
+nav {
+    width: 97vw;
+    font-size: 12px;
+}
+
+.conteudo-principal {
+    width: 96vw;
+    font-size: 11px;
+    padding: 0;
+}
+
+.options-navbar {
+    margin: 0;
+}
+
+ /*VISAO GERAL */
+
+ .filtros-busca {
+    height: 23vw;
+    align-content: flex-end;
+    flex-wrap: wrap;
+ }
+
+ 
+
+
+
+
+
+
+/*----------*/
+
+
 
 }
 
