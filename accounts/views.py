@@ -90,7 +90,7 @@ class CreateProfile(CreateView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailProfileView(DetailView):
     model = AcontUser
-    template_name = 'Profile.html'
+    template_name = 'profile.html'
 
     def post(self, request, **kwargs):
         pk = kwargs.get('pk')

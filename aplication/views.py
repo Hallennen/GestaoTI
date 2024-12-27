@@ -46,7 +46,7 @@ class ViewSolicitacao(ListView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class EditSolicitacao(UpdateView):
     model = Folga
-    template_name = 'EditSolicitacao.html'
+    template_name = 'editsolicitacao.html'
     form_class = FolgasFormUpdate
     success_url = '/solicitacao/'
 

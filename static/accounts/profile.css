@@ -7,7 +7,7 @@
     margin:  2% 5%;
     
 }.options-navbar#profile{
-    background-color: rgb(50, 35, 72);
+    background-color: #575a5d;
     color: white;
     font-size: bold;
 }
@@ -41,10 +41,29 @@ img#foto{
 	margin-left:37.5%;
 	justify-content: center;
     border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 38%), 0 2px 10px 0 rgb(0 0 0 / 47%);
+    animation: pulse 1.5s infinite;
 }
 
+/* @keyframes pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 50;
+    }
+} */
 
-
+img#foto:hover {
+    transform: scale(1.10,1.10);
+}
+img#foto:hover::after {
+    opacity: 1;
+}
 
 .item-grande {
 	grid-column: span 2;
@@ -62,11 +81,12 @@ img#foto{
     padding-top: 2px;
     padding-bottom: 10px;
     padding-left: 5px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 38%), 0 2px 10px 0 rgb(0 0 0 / 20%);
 
 }
 label{
     font-size: large;
+    font-weight: 600;
 }
 
 input{

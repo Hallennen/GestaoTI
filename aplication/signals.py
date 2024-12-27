@@ -10,12 +10,18 @@ from accounts.email_template import solicitacao_folga, aprovacao_folga
 def post_save(sender,created,instance,**kargs):
     
     if created:
-        solicitacao_folga(instance)
+        try:
+            solicitacao_folga(instance)
+        except:
+            ...
         update_saldo_folga(instance.folga_pessoa.id, 'menos')
 
 
     if instance.status_folga == 'APROVADO':
-        aprovacao_folga(instance)
+        try:
+            aprovacao_folga(instance)
+        except:
+            ...
 
     if instance.status_folga ==  'RECUSADO':
         update_saldo_folga(instance.folga_pessoa.id, 'mais')
