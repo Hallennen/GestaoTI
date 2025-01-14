@@ -106,3 +106,30 @@ a#esqueci_senha:hover{
     text-decoration: underline;
 
 }
+
+
+
+@media (max-width: 480px) {
+
+    /*LOGIN */  
+    .box-right {
+        height: 0;
+        width: 0;
+    }
+    .box-left {
+        height: 0;
+        width: 0;
+    }
+
+
+    body {
+        margin: 0;
+
+    }
+
+    .box-center {
+        margin: 0;
+        width: 46vw;
+        height: 58vw;
+    }
+}

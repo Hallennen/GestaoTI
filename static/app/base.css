@@ -1,3 +1,8 @@
+/* VARIAVEIS DE CSS */
+
+
+
+
 
 * {
     box-sizing: border-box;
@@ -54,7 +59,7 @@ li#welcome-name{
 
 li.options-navbar{
     padding-left:  5px;
-    margin-left: -5px;
+    
 }
 
 .conteiner{
@@ -91,7 +96,7 @@ ul{
 }
 
 .box-lateral{
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.555), 0 2px 10px 0 rgba(0, 0, 0, 0.514);
+    box-shadow: 0 2px 5px 0 #575a5d1f, 0 2px 10px 0 #575a5d73;
     height: auto;
     border-radius: 15px;
     width: 12vw;
@@ -110,7 +115,7 @@ ul{
 }
 
 .conteudo-principal{
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.452), 0 2px 10px 0 rgba(0, 0, 0, 0.452);
+    box-shadow: 0 2px 5px 0 #575a5d1f, 0 2px 10px 0 #575a5d73;
     padding: 10px;
     border: 10px #575a5d;
     border-radius: 20px;
@@ -139,12 +144,10 @@ p#footer{
 
 @media (max-width: 768px) {
   .box-lateral {
-
+    width: 15vw;
   }
 
-  .conteiner {
 
-  }
 
   /*VISAO GERAL */
 
@@ -191,6 +194,9 @@ button {
 
 @media (max-width: 480px) {
 
+    /*LOGIN */ 
+
+
     /*PERFIL*/
 
 .conteiner {
@@ -201,10 +207,9 @@ button {
     display: contents;
 }
 
-nav {
-    width: 97vw;
-    font-size: 12px;
-}
+
+
+
 
 .conteudo-principal {
     width: 96vw;
@@ -212,9 +217,25 @@ nav {
     padding: 0;
 }
 
-.options-navbar {
-    margin: 0;
+/*NAVBAR*/
+
+
+nav {
+    box-shadow: 0 2px 5px 0 #575a5d1f, 0 2px 10px 0 #575a5d73;
+    border-radius: 10px;
+    width: 97vw;
+    font-size: 12px;
 }
+
+[value="Cadastrar"] {
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    width: 50vw;
+}
+
+
+
+
 
  /*VISAO GERAL */
 
@@ -224,7 +245,7 @@ nav {
     flex-wrap: wrap;
  }
 
- 
+
 
 
 
@@ -238,3 +259,6 @@ nav {
 }
 
  
+@media (max-width: 1015px) {
+    
+}

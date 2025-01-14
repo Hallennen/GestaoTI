@@ -1,5 +1,5 @@
 .options-navbar#listprofile{
-    background-color: rgb(50, 35, 72);
+    background-color: #575a5d;
     color: white;
     font-size: bold;
 }
@@ -11,17 +11,23 @@
     min-height: min-content;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-    padding-bottom: 2px;
-    padding-top: 2px;
+    padding: 10px 2px 10px 2px;
+    margin: 4px;
+    font-size: 13px;
     text-align: center;
     align-items: center ;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 5px 0 #575a5d1f, 0 2px 10px 0 #575a5d73;
 }
 
 .photo_profile{
     border-radius: 50px;
     margin-top: 10px;
 
+}
+
+.conteudo-principal{
+    margin-bottom: 8%;
+    
 }
 
 

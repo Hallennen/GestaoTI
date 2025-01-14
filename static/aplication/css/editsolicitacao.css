@@ -1,5 +1,5 @@
 .options-navbar#solicitacao{
-    background-color: rgb(50, 35, 72);
+    background-color: #575a5d;
     color: white;
     font-size: bold;
 }
@@ -41,13 +41,15 @@ select{
 form{
     display:flex;
     flex-direction: column;
-    border: 1px solid grey;
+    box-shadow: 10px 10px 41px 0px  rgb(0 0 0 / 15%), 0 2px 10px 0 rgb(0 0 0 / 5%);
     border-radius: 5px;
     padding: 5px;
     /* background-color: orange; */
     min-width: min-content;
     min-height: min-content;
 }
+
+
 
 th{
     text-align: justify;
@@ -75,6 +77,3 @@ th{
 input{
     background:rgba(128, 128, 128, 0.55);
 }
-
-
-

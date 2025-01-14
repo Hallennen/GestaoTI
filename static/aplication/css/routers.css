@@ -52,9 +52,10 @@
     padding-bottom: 2px;
     padding-top: 2px;
     text-align: center;
-    padding: 7px 0 8px 0;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 38%), 0 2px 10px 0 rgb(0 0 0 / 47%);
+    padding: 10px 2px 10px 2px;
+    box-shadow: 0 2px 5px 0 #575a5d1f, 0 2px 10px 0 #575a5d73;
     font-size: 12px;
+    margin: 4px;
 }
 
 .linha-folga {
