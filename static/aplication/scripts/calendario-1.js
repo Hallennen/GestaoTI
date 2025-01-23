@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded',function() {
         let getLastDayThisMonth = new Date(ano,mes+1,0).getDate();
         var data = document.querySelectorAll('#dados');    
         var minha_folga = document.querySelectorAll('#minha_folga');    
+        var pendentes = document.querySelectorAll('#pendentes');    
  
 
 
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded',function() {
             dayTable.classList.remove('proximo-mes');
             dayTable.classList.remove('event');
             dayTable.classList.remove('folga');
+            dayTable.classList.remove('pendente');
             
 
             dayTable.innerHTML = dt.getDate();
@@ -79,6 +81,25 @@ document.addEventListener('DOMContentLoaded',function() {
                     
                     if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
                         dayTable.classList.add('folga')
+                    }
+                }
+
+                
+            }
+            if (pendentes){
+                for (folga of pendentes){
+                    console.log(folga.textContent)
+
+                    var teste = folga.textContent.split('-')
+                    
+                    
+                    var dia_informado = teste[2];
+                    var mes_informado = teste[1];
+                    var ano_informado = teste[0];
+                    
+                    
+                    if (dt.getFullYear() == ano_informado && dt.getMonth()+1 == mes_informado && dt.getDate() == dia_informado){
+                        dayTable.classList.add('pendente')
                     }
                 }
 
